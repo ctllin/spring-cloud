@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: eureka-server-cluster
+  security:
+    basic:
+      enabled: true
+    user:
+      name: root
+      password: liebe
+server:
+  port: 1002 #服务注册中心端口号
+  port1: 1001
+  port2: 1002
+  port3: 1003
+eureka:
+  instance:
+    ip-address: 192.168.6.27
+    hostname: localhost #服务注册中心实例的主机名
+    prefer-ip-address: true #也可以使用ip地址形式，此处设置为ture 即可默认值为false使用hostname
+  client:
+    registerWithEureka: true #是否向服务注册中心注册自己
+    fetchRegistry: true #是否检索服务
+    serviceUrl:
+      #defaultZone: http://${security.user.name}:${security.user.password}@127.0.0.1:${server.port1}/eureka/,http://${security.user.name}:${security.user.password}@127.0.0.1:${server.port2}/eureka/,http://${security.user.name}:${security.user.password}@127.0.0.1:${server.port3}/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@127.0.0.1:${server.port1}/eureka/,http://${spring.security.user.name}:${spring.security.user.password}@127.0.0.1:${server.port3}/eureka/ #在访问路径上加入用户名密码
+  server:
+    enable-self-preservation: false #关闭Eureka服务自我保护
+    eviction-interval-timer-in-ms: 15000 #服务端每隔n秒刷新依次服务列表，将无效服务剔除,扫描失效服务的间隔时间（单位毫秒，默认是60*1000）即60秒
+register:
+  random:
+    value: ${random.value}
+    int: ${random.int}
+    bignumber: ${random.bignumber}
+    random.int1: ${random.int(10)}
+    random.int2: ${random.int[10,20]}

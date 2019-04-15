@@ -1,0 +1,138 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    #下面为连接池的补充设置，应用到上面所有数据源中
+    #初始化大小，最小，最大
+    initialSize: 1
+    minIdle: 3
+    maxActive: 20
+    #配置获取连接等待超时的时间
+    maxWait: 1000
+    #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 1000
+    #配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 1000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    #打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,slf4j
+    #通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    #合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+    # Redis服务器地址
+
+  # Redis服务器连接端口
+  redis:
+    cluster:
+     nodes: 192.168.42.29:6379,192.168.42.29:6380,192.168.42.29:6381,192.168.42.29:6382,192.168.42.29:6383,192.168.42.29:6384
+    password: liebe
+    commandTimeout: 10000  #redis操作的超时时间
+    maxTotal: 5000 #最大连接数
+    maxIdle: 30 #最大空闲连接数
+    minIdle: 5 #最小空闲连接数
+    maxWait: 50
+#  mvc:
+#    view:
+#      suffix: .html
+#      prefix: /pages/
+#      static-path-pattern: /**
+    # 默认值为 classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+  kafka:
+    #bootstrap-servers: 192.168.42.29:9092 #单机
+    #集群模式生产者产生记录失败原因可能是因为zookeeper版本或zookeeper脏数据造成(清理zookeeper脏数据即可)
+    bootstrap-servers: 192.168.42.29:9092,192.168.42.29:9093,192.168.42.29:9094
+    #bootstrap-servers: kafkahost:9092,kafkahost:9093,kafkahost:9094
+    template:
+      default-topic: spring_cloud_topic
+      # 创建主题
+      # bin/kafka-topics.sh --create --zookeeper 192.168.42.29:2181,192.168.42.29:2182,192.168.42.29:2183 --replication-factor 3 --partitions 4 --topic spring_cloud_topic
+      # bin/kafka-topics.sh --describe --zookeeper 192.168.42.29:2181,192.168.42.29:2182,192.168.42.29:2183  --topic spring_cloud_topic
+    producer:
+      retries: 3
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        linger.ms: 1
+      #bootstrap-servers: 192.168.71.11:9092,192.168.71.12:9092,192.168.71.13:9092
+      #bootstrap-servers: 192.168.42.29:9092,192.168.42.29:9093,192.168.42.29:9094
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: group_01
+      #bootstrap-servers: 192.168.42.29:9092,192.168.42.29:9093,192.168.42.29:9094
+      #最早未被消费的offset
+      auto-offset-reset: earliest
+      #批量一次最大拉取数据量
+      max-poll-records: 1000
+      #自动提交
+      enable-auto-commit: true
+      properties:
+        session.timeout.ms: 15000
+  activemq:
+    #broker-url: failover:(tcp://192.168.42.29:61616,tcp://192.168.42.29:61617)
+    broker-url: failover:(tcp://192.168.42.29:61616)
+    close-timeout: 15s
+    in-memory: true
+    pool:
+      enabled: false #true是无法启动
+      max-connections: 5
+      idle-timeout: 30s
+    send-timeout: 300ms
+    password: admin
+    user: admin
+
+kafka:
+  defaultTopic: spring_cloud_topic
+mybatis:
+  type-aliases-package: com.ctl.test.model
+  mapper-locations: classpath:/com/ctl/test/mapper/*Mapper.xml
+redis:
+  usetype: 2
+#logging:
+#  level:
+#    root: debug
+#  file: springcould.log
+#    max-history: 30
+#    max-size: 10MB
+#  pattern:
+#    console: %d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n
+#    file: %d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n
+#  path: E://logs
+logging:
+  config: classpath:logback-spring.xml
+  path: E:/logs/springcloud
+  level:
+    root: DEBUG
+zookeeper:
+  connection:
+    url: 192.168.42.29:2181,192.168.42.29:2182,192.168.42.29:2183
+  lockPath:
+    prefix: /home/soft/cluster-zookeeper-3.5.3-beta/lock
+## Memcache 配置 ##
+memcache:
+  servers: 192.168.42.29:11211
+  failover: true
+  initConn: 100
+  minConn: 20
+  maxConn: 1000
+  maintSleep: 50
+  nagel: false
+  socketTO: 3000
+  aliveCheck: true

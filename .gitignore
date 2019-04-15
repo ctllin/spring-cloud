@@ -1,0 +1,41 @@
+/target/
+*/target/
+*target
+#表示忽略/foo,a/foo,a/b/foo等
+**/target:
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+*/mvnw
+*/mvnw.cmd
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.jar
+/transaction-logs/
+/classess/
+/logs/
+/SpringCloudBook/
+/ByteTCC/
+/zipkin/
+/ByteTCC-sample/
+/java-api/
+*/classess/
+*/.mvn/
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/

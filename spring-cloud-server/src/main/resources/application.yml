@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: spring-cloud-eureka-server
+security:
+  basic:
+    enabled: true
+  user:
+    name: root
+    password: liebe
+server:
+  #port: 0 #我们让Spring Boot为我们选择一个随机端口，因为后面是使用名称来访问这个服务。现在重新访问Eureka控制台可以看到新注册的这个服务。
+  port: 19001 #在同一台设备上使用server.port=0,只能看到一个服务,无法实现负载
+  port1: 1001
+  port2: 1002
+  port3: 1003
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${security.user.name}:${security.user.password}@127.0.0.1:${server.port1}/eureka/,http://${security.user.name}:${security.user.password}@127.0.0.1:${server.port2}/eureka/,http://${security.user.name}:${security.user.password}@127.0.0.1:${server.port3}/eureka/
+  instance:
+    preferIpAddress: true
+    ip-address: 192.168.6.27
+    leaseRenewalIntervalInSeconds: 5 #客户端每隔n秒向服务端发送数据包
+    leaseExpirationDurationInSeconds: 10 #客户端告知服务端：若在n秒内没有向服务器发送信息，则服务端将其从服务列表中删除
+person:
+  uuid: ${random.value}
+  age: ${random.int}
+  #salay: ${random.bignumber}
+  salay: ${random.int(10)}
+  name: ${random.int(10)}
+  sex: ${random.int[10,20]}
+  port: ${random.int}
+  condition: ctllin
+
+#配置日志级别
+logging:
+  level:
+    com.nexfixt: DEBUG

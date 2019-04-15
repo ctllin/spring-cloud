@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: spring-cloud-config-client
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true
+#        service-id: SPRING-CLOUD-CONFIG-SERVER
+env:
+  name: test
+#关于springboot-actuator监控的401无权限访问 management.security.enabled=false
+#management:
+#  security:
+#    enabled: false
+#security:
+#  basic:
+#    enabled: true
+#  user:
+#    name: root
+#    password: liebe
+application:
+  server:
+    name: spring-cloud-eureka-server
+#server:
+#  port: 8002
+#  port1: 1001
+#  port2: 1002
+#  port3: 1003
+eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://${security.user.name}:${security.user.password}@127.0.0.1:${server.port1}/eureka/,http://${security.user.name}:${security.user.password}@127.0.0.1:${server.port2}/eureka/,http://${security.user.name}:${security.user.password}@127.0.0.1:${server.port3}/eureka/
+#    register-with-eureka: true
+#    fetch-registry: true
+  instance:
+    preferIpAddress: true
+    ip-address: 192.168.6.27
+    leaseRenewalIntervalInSeconds: 5 #客户端每隔n秒向服务端发送数据包
+    leaseExpirationDurationInSeconds: 10 #客户端告知服务端：若在n秒内没有向服务器发送信息，则服务端将其从服务列表中删除
+
+zuul:
+  host:
+    #默认1000
+    socket-timeout-millis: 2000
+    #默认2000
+    connect-timeout-millis: 4000
+ribbon:
+  OkToRetryOnAllOperations: false #对所有操作请求都进行重试,默认false
+  ReadTimeout: 5000   #负载均衡超时时间，默认值5000
+  ConnectTimeout: 5000 #ribbon请求连接的超时时间，默认值2000
+  MaxAutoRetries: 0     #对当前实例的重试次数，默认0
+  MaxAutoRetriesNextServer: 1 #对切换实例的重试次数，默认1
+hystrix:
+  command:
+    default:  #default全局有效，service id指定应用有效
+      execution:
+        timeout:
+          #如果enabled设置为false，则请求超时交给ribbon控制,为true,则超时作为熔断根据
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 #断路器超时时间，默认1000ms
+
+feign.hystrix.enabled: true

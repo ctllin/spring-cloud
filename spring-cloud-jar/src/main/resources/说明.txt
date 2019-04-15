@@ -1,0 +1,4 @@
+svn地址 https://github.com/ctllin/common/trunk/commonUtils
+用户名/密码 ctllin/teng******
+下载源代码：mvn dependency:sources -DdownloadSources=true -DdownloadJavadocs=true
+mvn package 就会打jar，对应关联的lib文件在targett/lib 下面 需要在resources 下面创建文件夹META-INF并在其下面创建空文件 MANIFEST.MF  在执行mvn package后会写入MANIFEST.MF
