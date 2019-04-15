@@ -25,3 +25,7 @@ public class SpringBootTestApplication {
 		SpringApplication.run(SpringBootTestApplication.class, args);
 	}
 }
+//elasticsearch版本, elasticsearch-6.7.1
+//logstash版本,logstash-6.7.1
+//kibana版本, kibana-6.7.1
+//elasticsearch.yml cluster.name: elasticsearch

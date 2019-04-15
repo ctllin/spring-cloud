@@ -4,25 +4,19 @@ import com.ctl.springboottest.po.Goods;
 import com.ctl.springboottest.service.impl.GoodsRepository;
 import com.google.gson.Gson;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.MatchPhraseQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.data.querydsl.QPageRequest;
-import org.springframework.data.util.CloseableIterator;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.*;
-
-import static org.elasticsearch.index.mapper.AllFieldMapper.Defaults.INDEX_NAME;
-import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
-import static org.elasticsearch.search.aggregations.metrics.percentiles.Percentiles.TYPE_NAME;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * com.ctl.test.controller
