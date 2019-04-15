@@ -20,12 +20,13 @@ import java.util.UUID;
 public class Test {
 //数据批量导入
 //curl -XPOST 'localhost:9200/goods/store_goods/_bulk?pretty' -H 'Content-Type: application/json' --data-binary @data.json
-//------data.json start-----
+//------data.json 最后一行必需有换行start-----
 //    {"index":{"_index":"goods","_type":"store_goods","_id":"0000cf5c01604792b94f72e623c56136"}}
 //    {"id":"0000cf5c01604792b94f72e623c56136","merchant_id":"1","sku":"144100","plu_code":"1","code":"","name":"威猛先生地板清潔劑-芬多精 1","simple_name":"威猛先生地板清潔劑-芬多精 1","brand_code":"","brand_name":"2","unit":"件","specification":"件","grade":"合格","pack_size":"1","manufacturer":"","manufacturer_address":"","place_of_origin":"台灣","description":"","img_url":"","packing_flag":"0","process_flag":"0","raw_materials_flag":"0","type":"0","storage_mode":"0","suttle":"","weight":"2","retail_above":"","retail_below":"","category_id":"6610865fcfd64162bf64b0a15664beb9","category_code":"2_27_92_11","category_name":"地板清潔","route_category_code":"0@2@2_27@2_27_92","route_category_name":"All@大宗消費品採購處@家庭清潔紙製品課@家庭清潔","cost_price":"","market_price":"219","suggested_price":"","group_buy_price":"","proposal_purchase_price":"","keep_days":"","keep_hour":"","state":"0","remove_flag":"0","del_flag":"0","gmt_create":"2018-11-13 19:02:27","gmt_modified":"2019-03-14 18:04:30"}
 //    {"index":{"_index":"goods","_type":"store_goods","_id":"0000d3409e554f45a22c5c00dc8af86f"}}
 //    {"id":"0000d3409e554f45a22c5c00dc8af86f","merchant_id":"1","sku":"378276","plu_code":"","code":"","name":"紹興熟香腸50g","simple_name":"23782761","brand_code":"","brand_name":"","unit":"包","specification":"50g/支","grade":"","pack_size":"1","manufacturer":"","manufacturer_address":"","place_of_origin":"台灣","description":"","img_url":"","packing_flag":"0","process_flag":"0","raw_materials_flag":"0","type":"0","storage_mode":"0","suttle":"","weight":"","retail_above":"","retail_below":"","category_id":"038c1ee64eac4c67939acd4375390a44","category_code":"2_15_25_4","category_name":"中式香腸","route_category_code":"0@2@2_15@2_15_25","route_category_name":"All@大宗消費品採購處@冷藏課@加工肉製品","cost_price":"","market_price":"26","suggested_price":"","group_buy_price":"","proposal_purchase_price":"","keep_days":"","keep_hour":"","state":"0","remove_flag":"0","del_flag":"0","gmt_create":"2018-11-13 19:03:17","gmt_modified":"2019-02-18 20:32:24"}
-//------data.json end-----
+//
+//------data.json 最后一行必需有换行 end-----
     private static Logger logger = LoggerFactory.getLogger("Application_ERROR");
 
     public static void main(String[] args) throws IOException {

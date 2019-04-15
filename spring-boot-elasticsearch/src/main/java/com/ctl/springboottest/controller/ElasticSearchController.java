@@ -26,7 +26,8 @@ import static org.elasticsearch.search.aggregations.metrics.percentiles.Percenti
 
 /**
  * com.ctl.test.controller
- * AsyncController
+ * AsyncController  使用该类需要先创建index
+ * curl -XPOST 'localhost:9200/goods/store_goods/_bulk?pretty' -H 'Content-Type: application/json' --data-binary @goodsToES.json
  * ctl 2019/3/31 21:35
  */
 @RestController
@@ -188,7 +189,14 @@ public class ElasticSearchController {
         returnMap.put("allCount", count);
         return returnMap;
     }
-
+    @RequestMapping("/deleteIndex/{index}")
+    @ResponseBody
+    public Object deleteIndex(@PathVariable("index") String index) {
+        boolean b = elasticsearchTemplate.deleteIndex(index);
+        Map<String,Object> returnMap = new HashMap<>();
+        returnMap.put("delIndexResult",b);
+        return returnMap;
+    }
     public static void main(String[] args) {
         for (int i = 65; i < 65 + 26; i++) {
             System.out.println(getENStr(32));
