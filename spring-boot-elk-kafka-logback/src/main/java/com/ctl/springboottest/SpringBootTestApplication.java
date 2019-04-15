@@ -65,6 +65,9 @@ public class SpringBootTestApplication {
     }
 
 }
+
+// 安装logstash-input-jdbc插件 E:\elk\logstash-7.0.0>bin\logstash-plugin.bat install "E:/elk/logstash-input-jdbc-4.3.13.zip"
+
 //********************注意 logback配置kafka主题,logstash配置kafka主题,创建的主题要保持一致***********************
 //1、启动zookeeper
 //2、启动kafka(kafka-server-start.bat "E:\elk\kafka_2.12-1.1.1\config\server.properties")
