@@ -8,6 +8,7 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
@@ -191,6 +192,20 @@ public class ElasticSearchController {
         return goodsList;
     }
 
+    //查询
+    @RequestMapping("/searchSimilar")
+    @ResponseBody
+    public Page<Goods> searchSimilar(@RequestBody Goods goods) {
+        if (goods.getCurrentPage() == null || goods.getCurrentPage() <= 0) {
+            goods.setCurrentPage(1);
+        }
+        if (goods.getPageSize() == null || goods.getPageSize() <= 0) {
+            goods.setPageSize(100);
+        }
+        Pageable pageable = new QPageRequest(0, goods.getPageSize());
+        Page<Goods> page = er.searchSimilar(goods, new String[]{"sku","id","name","img_url"}, pageable);
+        return page;
+    }
     //统计条数
     @RequestMapping("/count")
     @ResponseBody
