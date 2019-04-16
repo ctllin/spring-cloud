@@ -1,0 +1,3 @@
+使用反射，写一个LuceneUtil工具类，完成
+1）javabean对象转document对象
+2）document对象转javabean对象

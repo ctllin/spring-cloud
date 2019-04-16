@@ -1,0 +1,7 @@
+Agent-Class: com.ctl.intrumentation.AgentMainS
+Premain-Class: com.ctl.intrumentation.PreAgentS
+Main-Class:  com.ctl.intrumentation.TestMain
+Boot-Class-Path: javassist-3.18.1-GA.jar
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+
