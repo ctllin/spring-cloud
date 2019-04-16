@@ -30,7 +30,7 @@
     <logger name="Application_ERROR">
         <appender-ref ref="console"/>
     </logger>
-    <root level="info">
+    <root level="debug">
 <!--
         <appender-ref ref="kafkaAppender" />
 -->

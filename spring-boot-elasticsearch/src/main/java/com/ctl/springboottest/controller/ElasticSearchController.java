@@ -1,5 +1,6 @@
 package com.ctl.springboottest.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ctl.springboottest.po.Goods;
 import com.ctl.springboottest.service.impl.GoodsRepository;
 import com.google.gson.Gson;
@@ -13,10 +14,8 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.web.bind.annotation.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+
+import java.util.*;
 
 /**
  * com.ctl.test.controller
@@ -78,13 +77,25 @@ public class ElasticSearchController {
         return goods;
     }
 
+
     //查询
     @RequestMapping("/query/{id}")
     @ResponseBody
     public Goods query(@PathVariable("id") String id) {
         Goods accountInfo = er.queryGoodsById(id);
+        Optional<Goods> byId = er.findById(id);
+        Goods goods = byId.get();
+        System.out.println(JSONObject.toJSONString(byId));
+
         System.err.println(new Gson().toJson(accountInfo));
         return accountInfo;
+    }
+    //查询
+    @RequestMapping("/queryByName/{name}")
+    @ResponseBody
+    public List<Goods> queryByName(@PathVariable("name") String name) {
+        List<Goods> goodsList = er.queryGoodsByName(name);
+        return goodsList;
     }
 
     //查询 模糊查询(单个字段)不进行分词(等同于like '%value%')
