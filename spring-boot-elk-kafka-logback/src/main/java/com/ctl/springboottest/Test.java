@@ -15,4 +15,8 @@ public class Test {
     public static void main(String[] args) {
         logger.info("kafka test");
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bd27b5eb92e3bb50fd2e2fae1ca97c2e36992363

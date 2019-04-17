@@ -7,6 +7,7 @@ git push -u origin master
 git remote add origin https://github.com/ctllin/spring-cloud.git
 git push -u origin master
 
+fatal: refusing to merge unrelated histories  解决 git pull origin master --allow-unrelated-histories
 
 git add .
 git commit -m 'modify'
