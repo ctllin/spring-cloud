@@ -235,8 +235,10 @@ public class ElasticSearchController {
 
         List<Goods> goodsList = elasticsearchTemplate.queryForList(searchQuery, Goods.class);
         returnMap.put("goodsList",goodsList);
+        //得到分页数据
         AggregatedPage<Goods> page = elasticsearchTemplate.queryForPage(searchQuery, Goods.class);
         returnMap.put("page",page);
+        //得到总体条数
         long count = elasticsearchTemplate.count(searchQuery, Goods.class);
         returnMap.put("count",count);
         return returnMap;
