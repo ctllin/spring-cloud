@@ -9,6 +9,13 @@ git push -u origin master
 
 fatal: refusing to merge unrelated histories  解决 git pull origin master --allow-unrelated-histories
 
+hint: 'git pull ...') before pushing again.
+从提示可以看出，是由于两者不同步，因此需要先pull，进行合并然后在进行push，
+git pull --rebase origin master
+git push -u origin master
+
+
+
 git add .
 git commit -m 'modify'
 git push -u origin master
