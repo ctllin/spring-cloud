@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
 import org.springframework.data.elasticsearch.core.query.DeleteQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
@@ -191,6 +192,7 @@ public class ElasticSearchController {
     @RequestMapping("/searchQuery")
     @ResponseBody
     public Object searchQuery(@RequestBody Goods goods) {
+        Map<String,Object> returnMap = new HashMap<>();
         //外层大条件（or）
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
         //条件1 (and and )
@@ -232,7 +234,12 @@ public class ElasticSearchController {
                 .build();
 
         List<Goods> goodsList = elasticsearchTemplate.queryForList(searchQuery, Goods.class);
-        return goodsList;
+        returnMap.put("goodsList",goodsList);
+        AggregatedPage<Goods> page = elasticsearchTemplate.queryForPage(searchQuery, Goods.class);
+        returnMap.put("page",page);
+        long count = elasticsearchTemplate.count(searchQuery, Goods.class);
+        returnMap.put("count",count);
+        return returnMap;
     }
 
 
