@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.query.DeleteQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.data.querydsl.QPageRequest;
@@ -63,6 +64,47 @@ public class ElasticSearchController {
         er.delete(good);
         return good;
     }
+
+    //删除
+    @RequestMapping("/deleteByIndexTypeId/{index}/{type}/{id}")
+    @ResponseBody
+    public Object deleteByIndexTypeId(@PathVariable("index") String index,@PathVariable("type") String type,@PathVariable("id") String id) {
+        String result = elasticsearchTemplate.delete(index, type, id);
+        Map<String,Object> returnMap = new HashMap<>();
+        returnMap.put("deleteByIndexTypeIdResult",result);
+        return returnMap;
+    }
+
+    //删除根据条件删除数据
+    @RequestMapping("/deleteByDeleteQuery/{index}/{type}")
+    @ResponseBody
+    public Object deleteByDeleteQuery(@PathVariable("index") String index,@PathVariable("type") String type,@RequestBody Goods good) {
+        Map<String, Object> returnMap = new HashMap<>();
+        DeleteQuery deleteQuery = new DeleteQuery();
+        deleteQuery.setIndex(index);
+        deleteQuery.setType(type);
+
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+        if (good.getName() != null) {
+            //name=辣牛肉湯麵 匹配=[雙響泡哈燒鮮辣牛肉湯麵, 真麵堂紅燒牛肉湯麵104g/包, 味王-椒麻牛肉湯麵91g/包] name会进行分词,value包含分词即可
+            //boolQueryBuilder.must(QueryBuilders.matchQuery("name", goods.getName()));
+            //name=辣牛肉湯麵 匹配=[*辣牛肉湯麵*] name不会进行分词 value中需要包含这个短语
+            boolQueryBuilder.must(QueryBuilders.matchPhraseQuery("name", good.getName()));
+            //name=辣牛肉湯麵 无法匹配到数据 ,term不分词，所以term查询的条件必须是text字段分词后的某一个,name=肉则可以
+            //boolQueryBuilder.must(QueryBuilders.termQuery("name", goods.getName()));
+        }
+        if (good.getSku() != null) {
+            boolQueryBuilder.must(QueryBuilders.termQuery("sku", good.getSku()));
+        }
+        if (good.getName() == null && good.getSku() == null) {
+            System.out.println("name sku 不能同时为空");
+            return returnMap;
+        }
+        deleteQuery.setQuery(boolQueryBuilder);
+        elasticsearchTemplate.delete(deleteQuery, Goods.class);
+        return returnMap;
+    }
+
     //局部更新
     @RequestMapping("/update/{id}")
     @ResponseBody
