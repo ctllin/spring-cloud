@@ -9,9 +9,10 @@
 <!--
     <dubbo:registry address="zookeeper://192.168.42.29:2181?backup=192.168.42.29:2182,192.168.42.29:2183"/>
 -->
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <!-- zookeeper服务关闭后dubbo依旧可以提供服务,原因是dubbo将服务地址放在磁盘的临时文件中,并加载到内存中及时删除了临时文件依旧可以调用服务 -->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" file="${user.home}/output/dubbo.cache"/>
 
     <dubbo:consumer filter="consumerFilter" />
-    <dubbo:reference  id="dubboLogTraceIdService" interface="com.ctl.springboottest.service.DubboLogTraceIdService"/>
+    <dubbo:reference  id="dubboLogTraceIdService" interface="com.ctl.springboottest.service.DubboLogTraceIdService" timeout="3000" check="false"/>
 
 </beans>

@@ -29,6 +29,7 @@ public class DubboLogTraceIdServiceImpl implements DubboLogTraceIdService {
         }catch (Exception e){
             logger.error("日志链路追踪2测试调用失败",e);
         }
+        returnMap.put("id",id);
         return returnMap ;
     }
 }
