@@ -1,0 +1,1 @@
+consumerFilter=com.ctl.springboottest.filter.TraceFilter

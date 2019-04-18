@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="demo-provider" owner="ctllin" organization="ctl"/>
+    <!--<dubbo:registry address="multicast://224.5.6.7:1234" />-->
+    <!--<dubbo:registry address="zookeeper://192.168.42.29:2181"/>-->
+<!--
+    <dubbo:registry address="zookeeper://192.168.42.29:2181?backup=192.168.42.29:2182,192.168.42.29:2183"/>
+-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <dubbo:protocol name="dubbo" port="-1"/>
+    <dubbo:provider filter="providerFilter" />
+    <dubbo:service interface="com.ctl.springboottest.service.DubboLogTraceIdService" ref="dubboLogTraceIdServiceImpl"/>
+    <dubbo:reference  id="dubboLogTraceId2Service" interface="com.ctl.springboottest.service.DubboLogTraceId2Service"/>
+</beans>

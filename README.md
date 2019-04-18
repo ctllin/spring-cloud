@@ -283,3 +283,9 @@ spring-boot版本<version>2.1.3.RELEASE</version>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-webflux</artifactId>
 </dependency>	
+
+
+==========================dubbo链路跟踪=========================
+项目spring-boot-dubbo-consumer
+类com.ctl.springboottest.SpringBootTestApplication
+详细配置看上面类中的注释
