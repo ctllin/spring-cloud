@@ -37,8 +37,8 @@ public class DubboLogController {
     @LogAcpect
     @GetMapping("get2/{id}")
     public Object get2(@PathVariable("id") String id) {
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
+//        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+//        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
         logger.info("get2 controller->param:{}", id);
         return dubboLogTraceIdService.getTraceId(id);
     }
@@ -46,24 +46,24 @@ public class DubboLogController {
     @LogAcpect
     @GetMapping("get3/{id}")
     public Object get3(@PathVariable("id") String id) {
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
+//        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+//        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
         logger.info("get3 controller->param:{}", id);
         return dubboLogTraceIdService.getTraceId(id);
     }
     @LogAcpect
     @GetMapping("get4/{id}")
     public Object get4(@PathVariable("id") String id) {
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
+//        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+//        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
         logger.info("get4 controller->param:{}", id);
         return dubboLogTraceIdService.getTraceId001(id);
     }
     @LogAcpect
     @GetMapping("get5/{id}")
     public Object get5(@PathVariable("id") String id) {
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
+//        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+//        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
         logger.info("get5 controller->param:{}", id);
         return dubboLogTraceIdService.getTraceId002(id);
     }
