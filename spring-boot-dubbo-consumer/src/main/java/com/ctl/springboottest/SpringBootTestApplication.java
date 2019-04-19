@@ -30,6 +30,19 @@ public class SpringBootTestApplication {
 		SpringApplication.run(SpringBootTestApplication.class, args);
 	}
 }
+//curl http://localhost:20001/log/get5/1
+//curl http://localhost:20001/log/get4/1
+//curl http://localhost:20001/log/get3/1
+//curl http://localhost:20001/log/get2/1
+//curl http://localhost:20001/log/get/1
+//curl http://localhost:20001/log/get/1
+//curl http://localhost:20001/log/get2/1
+//curl http://localhost:20001/log/get3/1
+//curl http://localhost:20001/log/get4/1
+//curl http://localhost:20001/log/get5/1
+
+
+
 //dubbo链路追踪
 //1.在controller调用处生成一个uuid然后放放进去
 //		com.ctl.springboottest.controller.DubboLogController{

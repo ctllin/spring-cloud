@@ -30,7 +30,7 @@ public class DubboLogController {
     public Object get(@PathVariable("id") String id){
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
-        logger.info("controller->param:{}", id);
+        logger.info("get1 controller->param:{}", id);
         return dubboLogTraceIdService.getTraceId(id);
     }
 
