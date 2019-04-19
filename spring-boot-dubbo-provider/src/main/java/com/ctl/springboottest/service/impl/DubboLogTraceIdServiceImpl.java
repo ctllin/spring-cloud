@@ -32,4 +32,30 @@ public class DubboLogTraceIdServiceImpl implements DubboLogTraceIdService {
         returnMap.put("id",id);
         return returnMap ;
     }
+
+    @Override
+    public Object getTraceId001(String id) {
+        logger.info("日志链路追踪getTraceId001测试"+id);
+        Map<String,Object> returnMap = new HashMap<>();
+        try {
+            dubboLogTraceId2Service.getTrace2Id(id);
+        }catch (Exception e){
+            logger.error("日志链路追踪getTraceId001测试调用失败",e);
+        }
+        returnMap.put("id001",id);
+        return returnMap ;
+    }
+
+    @Override
+    public Object getTraceId002(String id) {
+        logger.info("日志链路追踪getTraceId002测试"+id);
+        Map<String,Object> returnMap = new HashMap<>();
+        try {
+            dubboLogTraceId2Service.getTrace2Id(id);
+        }catch (Exception e){
+            logger.error("日志链路追踪getTraceId002测试调用失败",e);
+        }
+        returnMap.put("id002",id);
+        return returnMap ;
+    }
 }

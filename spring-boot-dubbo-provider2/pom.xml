@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ctl</groupId>
-	<artifactId>spring-boot-dubbo-provider</artifactId>
+	<artifactId>spring-boot-dubbo-provider2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-dubbo-provider</name>
+	<name>spring-boot-dubbo-provider2</name>
 	<description>Demo project for Spring Boot</description>
 	<packaging>jar</packaging>
 	<properties>

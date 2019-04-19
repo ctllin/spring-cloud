@@ -1,5 +1,6 @@
 package com.ctl.springboottest.controller;
 
+import com.ctl.springboottest.aspect.LogAcpect;
 import com.ctl.springboottest.constants.DubboLogConstants;
 import com.ctl.springboottest.service.DubboLogTraceIdService;
 import org.slf4j.Logger;
@@ -33,4 +34,37 @@ public class DubboLogController {
         return dubboLogTraceIdService.getTraceId(id);
     }
 
+    @LogAcpect
+    @GetMapping("get2/{id}")
+    public Object get2(@PathVariable("id") String id) {
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
+        logger.info("get2 controller->param:{}", id);
+        return dubboLogTraceIdService.getTraceId(id);
+    }
+
+    @LogAcpect
+    @GetMapping("get3/{id}")
+    public Object get3(@PathVariable("id") String id) {
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
+        logger.info("get3 controller->param:{}", id);
+        return dubboLogTraceIdService.getTraceId(id);
+    }
+    @LogAcpect
+    @GetMapping("get4/{id}")
+    public Object get4(@PathVariable("id") String id) {
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
+        logger.info("get4 controller->param:{}", id);
+        return dubboLogTraceIdService.getTraceId001(id);
+    }
+    @LogAcpect
+    @GetMapping("get5/{id}")
+    public Object get5(@PathVariable("id") String id) {
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        MDC.put(DubboLogConstants.TRACE_LOG_ID, uuid);
+        logger.info("get5 controller->param:{}", id);
+        return dubboLogTraceIdService.getTraceId002(id);
+    }
 }
