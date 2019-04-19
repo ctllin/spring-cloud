@@ -1,7 +1,5 @@
 package com.ctl.springboottest.aspect;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.ctl.springboottest.constants.DubboLogConstants;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -14,9 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
-
 import java.lang.reflect.Method;
-import java.util.List;
 import java.util.UUID;
 
 /**
