@@ -16,7 +16,7 @@ import java.util.Collection;
 
 /**
  * <p>Title: DubboUtil</p>
- * <p>Description: </p>
+ * <p>Description: 释放dubbo占用端口</p>
  * <p>Copyright: Copyright (c) 2018</p>
  * <p>Company: www.hanshow.com</p>
  *
