@@ -18,5 +18,7 @@
     <dubbo:provider filter="providerFilter" />
     <dubbo:service interface="com.ctl.springboottest.service.DubboLogTraceIdService" ref="dubboLogTraceIdServiceImpl"/>
     <dubbo:reference  id="dubboLogTraceId2Service" interface="com.ctl.springboottest.service.DubboLogTraceId2Service"  timeout="3000" check="false"/>
+
+    <!-- 卸载war后释放dubbo服务(释放端口) -->
     <bean id="dubboUtil" class="com.ctl.springboottest.DubboUtil" init-method="init" destroy-method="destroy"/>
 </beans>
