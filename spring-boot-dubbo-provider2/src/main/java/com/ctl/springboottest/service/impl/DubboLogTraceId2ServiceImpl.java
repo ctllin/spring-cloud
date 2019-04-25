@@ -19,7 +19,7 @@ public class DubboLogTraceId2ServiceImpl implements DubboLogTraceId2Service {
 
     @Override
     public Object getTrace2Id(String id) {
-        logger.info("日志链路追踪2测试"+id);
+        logger.info("日志链路追踪getTrace2Id测试"+id);
         Map<String,Object> returnMap = new HashMap<>();
         returnMap.put("id",id);
         return returnMap ;
