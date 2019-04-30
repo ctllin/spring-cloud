@@ -11,11 +11,13 @@
   <name>javase-test</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
-
   <properties>
+    <spring.version>4.2.6.RELEASE</spring.version>
+    <logback.version>1.1.6</logback.version>
+    <slf4j.version>1.7.22</slf4j.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <lucene.version>8.0.0</lucene.version>
   </properties>
 
@@ -26,7 +28,22 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <!-- log -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common -->
     <dependency>
       <groupId>org.apache.lucene</groupId>
