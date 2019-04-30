@@ -26,3 +26,8 @@ public class HSLienceProvider {
 //创建HSLienceProvide.c
 //gcc -fPIC -D_REENTRANT -I/home/wise/ctest/jdk1.8.0_151/include -I/home/wise/ctest/jdk1.8.0_151/include/linux -c HSLienceProvider.c
 //gcc -shared HSLienceProvider.o -o libhspk.so
+
+/**
+gcc -fPIC -D_REENTRANT -I$JAVA_HOME/include -I$JAVA_HOME/include/linux -c HSLienceProvider.c
+gcc -shared HSLienceProvider.o -o libhspk.so
+*/
