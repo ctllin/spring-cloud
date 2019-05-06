@@ -293,3 +293,5 @@ spring-boot版本<version>2.1.3.RELEASE</version>
 ==========================Linux平台Java调用so库-JNI使用例子=========================
 F:\github\spring-cloud\javaagent  HSLienceProvider.java
 参考地址https://blog.csdn.net/rocgege/article/details/58585225
+
+F:\github\spring-cloud\javase-test\src\main\java\com\ctl\jni
