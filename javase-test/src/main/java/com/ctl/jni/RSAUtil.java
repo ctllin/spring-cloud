@@ -13,8 +13,8 @@ package com.ctl.jni;
  */
 
 import com.alibaba.fastjson.JSON;
-import com.hanshow.wise.base.common.util.ConfigUtils;
-import com.hanshow.wise.base.privileges.listener.HanshowLicence;
+//import com.hanshow.wise.base.common.util.ConfigUtils;
+//import com.hanshow.wise.base.privileges.listener.HanshowLicence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Base64Utils;
@@ -248,17 +248,17 @@ public class RSAUtil {
         System.out.println("解密后是:" + new String(Base64Utils.decodeFromString(decString)));
         System.out.println("解密后是:" + new String(Base64Utils.decodeFromString(decString1)));
         String encryptStr="";
-        System.out.println("加密后是:" + (encryptStr=rsa.encrypt(ConfigUtils.getType("public_key"),msg)));
-        System.out.println("解密后是:" + new String(Base64Utils.decodeFromString( rsa.decrypt(ConfigUtils.getType("private_key"),encryptStr))));
-        HanshowLicence hanshowLicence = new HanshowLicence();
-        hanshowLicence.setDeviceNum(1000);
-        hanshowLicence.setStoreNum(100);
-        String licenceMsg = JSON.toJSONString(hanshowLicence);
-        System.out.println("明文是:" + licenceMsg);
-        String licenceEncryptStr=rsa.encrypt(ConfigUtils.getType("public_key"),licenceMsg);
-        System.out.println("加密后是:" + licenceEncryptStr);
-        String licenceDecryptStr = new String(Base64Utils.decodeFromString(rsa.decrypt(ConfigUtils.getType("private_key"), licenceEncryptStr)));
-        System.out.println("解密后是:" + licenceDecryptStr);
+//        System.out.println("加密后是:" + (encryptStr=rsa.encrypt(ConfigUtils.getType("public_key"),msg)));
+//        System.out.println("解密后是:" + new String(Base64Utils.decodeFromString( rsa.decrypt(ConfigUtils.getType("private_key"),encryptStr))));
+//        HanshowLicence hanshowLicence = new HanshowLicence();
+//        hanshowLicence.setDeviceNum(1000);
+//        hanshowLicence.setStoreNum(100);
+//        String licenceMsg = JSON.toJSONString(hanshowLicence);
+//        System.out.println("明文是:" + licenceMsg);
+//        String licenceEncryptStr=rsa.encrypt(ConfigUtils.getType("public_key"),licenceMsg);
+//        System.out.println("加密后是:" + licenceEncryptStr);
+//        String licenceDecryptStr = new String(Base64Utils.decodeFromString(rsa.decrypt(ConfigUtils.getType("private_key"), licenceEncryptStr)));
+//        System.out.println("解密后是:" + licenceDecryptStr);
     }
 
 }

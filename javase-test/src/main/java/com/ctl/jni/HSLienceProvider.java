@@ -38,6 +38,7 @@ public class HSLienceProvider {
     public native int getValue(String str, int seq);
 
     public static void main(String[] args) {
+        System.out.println(System.getProperty("java.library.path"));
         System.out.println(new HSLienceProvider().getHspk());
     }
 }
