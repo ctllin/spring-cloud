@@ -17,6 +17,7 @@ package com.hanshow.wise.base.lience;//import org.apache.commons.lang3.StringUti
      //如果tomcat lib文件夹下没有改jar包,则进去catch里面这时可以进行处理
      //虽然可以有多个项目执行该try catch 但是 HSLienceProvider中的System.loadLibrary("hspk") 在tomcat启动后只会执行一次且只要该tomcat中的项目
      //都可以调用该类的native方法,war包重新部署不会导致so重新加载只有tomcat重启才会导致so加载
+     //多个tomcat情况，每个tomcat加载so互不影响
      Class<?> aClass = Class.forName(HSLienceConstants.HS_LIENCE_PROVIDER);
      HSLienceProvider hsLienceProvider = new HSLienceProvider();
      lienceStr = new String(Base64Utils.decodeFromString(rsa.decrypt(hsLienceProvider.getHspk(), lience)));
