@@ -5,13 +5,14 @@ package com.hanshow.wise.base.lience;//import org.apache.commons.lang3.StringUti
  * <p>Description: </p>
  * <p>Copyright: Copyright (c) 2018</p>
  * <p>Company: www.hanshow.com</p>
- * 将改项目打成jar包,放入tomcat的lib文件加下面
-
+ *
+  1）将改项目打成jar包,放入tomcat的lib文件加下面
+  2）将生成的so文件放入到usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib 其中的一个文件加下面
  public class HSLienceConstants {
      public static final String HS_LIENCE_PROVIDER_UTIL="com.hanshow.wise.base.lience.util.HSLienceProviderUtil";
      public static final String HS_LIENCE_PROVIDER="com.hanshow.wise.base.lience.HSLienceProvider";
  }
-
+3）
  try {
      //如果tomcat lib文件夹下没有改jar包,则进去catch里面这时可以进行处理
      //虽然可以有多个项目执行该try catch 但是 HSLienceProvider中的System.loadLibrary("hspk") 在tomcat启动后只会执行一次且只要该tomcat中的项目
