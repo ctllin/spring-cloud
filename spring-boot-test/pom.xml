@@ -63,6 +63,49 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<!--
+				Maven 配置 Tomcat8+ 部署方案
+				在maven中配置该下载仓库
+				<mirror>
+					<id>tomcat8</id>
+					<mirrorOf>central</mirrorOf>
+					<name>tomcat8</name>
+					<url>https://artifacts.alfresco.com/nexus/content/repositories/public/</url>
+				</mirror>
+                在activeProfiles配置该仓库
+                <activeProfiles>
+                    <activeProfile>tomcat8</activeProfile>
+                </activeProfiles>
+				-->
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat8-maven-plugin</artifactId>
+				<version>3.0-r1756463</version>
+				<configuration>
+					<port>8080</port>
+					<uriEncoding>UTF-8</uriEncoding>
+					<url>http://192.168.3.117:8080/manager/text</url>
+					<!--
+						webapps/manager/META-INF中修改运行放的的ip例如192.168.\d+.\d+
+						<Context antiResourceLocking="false" privileged="true" >
+							  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+									 allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1|192.168.\d+.\d+" />
+							  <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
+						</Context>
+						tomcat-users.xml配置密码
+						<role rolename="manager"/>
+						<role rolename="manager-gui"/>
+						<role rolename="admin"/>
+						<role rolename="admin-gui"/>
+						<role rolename="manager-script"/>
+						<user username="root" password="123456" roles="admin-gui,admin,manager-gui,manager,manager-script"/>
+					-->
+					<username>root</username>
+					<password>123456</password>
+					<path>/${project.artifactId}</path>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

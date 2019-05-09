@@ -305,3 +305,9 @@ F:\github\spring-cloud\spring-boot-test\src\main\java\com\ctl\springboottest\con
 @ImportResource(locations = {"classpath:spring-dubbo.xml","classpath:spring-mybatis.xml"}) 引用多个配置文件
 
 
+==========================maven配置=========================
+F:\github\spring-cloud\spring-boot-test\pom.xml
+Maven 配置 Tomcat8+ 部署方案
+Maven配置多个镜像（切换仓库下载Jar包）
+
+
