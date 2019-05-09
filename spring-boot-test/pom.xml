@@ -104,6 +104,31 @@
 					<username>root</username>
 					<password>123456</password>
 					<path>/${project.artifactId}</path>
+
+					<!--
+					  如果在setting.xml配置了（和tomcat-user.xml配置的密码保持一致）
+					  	<server>
+							<id>tomcat8</id>
+							<username>root</username>
+							<password>123456</password>
+						</server>
+						那么
+						<configuration>
+							<url>http://192.168.3.117:8071/manager/text</url>
+							<port>8071</port>
+							<uriEncoding>UTF-8</uriEncoding>
+							<username>root</username>
+							<password>123456</password>
+							<path>/${project.artifactId}</path>
+						</configuration>
+						等用于
+						<configuration>
+							<url>http://192.168.3.117:8071/manager/text</url>
+						 	<server>tomcat8</server>
+							<path>/${project.artifactId}</path>
+						</configuration>
+						在Plugins中可以看到tomcat8插件该插件有deploy,redeploy 等命令执行后就可以直接部署到服务tomcat服务器上
+					-->
 				</configuration>
 			</plugin>
 		</plugins>
