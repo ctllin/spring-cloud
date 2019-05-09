@@ -4,6 +4,7 @@ import com.ctl.springboottest.service.ClusterRedisClient;
 import com.ctl.springboottest.service.RedisClient;
 import com.ctl.springboottest.service.SingleRedisClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -20,14 +21,17 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @PropertySource("classpath:config.properties")
+@ConfigurationProperties(prefix="redis")
 public class RedisConfig {
+    //redis.type=1
     @Bean
-    @ConditionalOnProperty(name = "redis.type", havingValue = "1")
+    @ConditionalOnProperty(name = "type", havingValue = "1")
     public RedisClient singleRedisClient() {
         return new SingleRedisClient();
     }
+    //redis.type=2
     @Bean
-    @ConditionalOnProperty(name = "redis.type", havingValue = "2")
+    @ConditionalOnProperty(name = "type", havingValue = "2")
     public RedisClient clusterRedisClient() {
         return new ClusterRedisClient();
     }
