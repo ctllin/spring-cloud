@@ -302,4 +302,6 @@ F:\github\spring-cloud\javase-test\src\main\java\com\ctl\jni
 F:\github\spring-cloud\spring-boot-test\src\main\java\com\ctl\springboottest\config\RedisConfig.java
 @PropertySource("classpath:config.properties") 加载指定的配置文件
 @ConditionalOnProperty(name = "redis.type", havingValue = "1") 当配置文件满足条件时执行
+@ImportResource(locations = {"classpath:spring-dubbo.xml","classpath:spring-mybatis.xml"}) 引用多个配置文件
+
 
