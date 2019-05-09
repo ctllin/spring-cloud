@@ -295,3 +295,11 @@ F:\github\spring-cloud\javaagent  HSLienceProvider.java
 参考地址https://blog.csdn.net/rocgege/article/details/58585225
 
 F:\github\spring-cloud\javase-test\src\main\java\com\ctl\jni
+
+
+
+==========================springboot注解=========================
+F:\github\spring-cloud\spring-boot-test\src\main\java\com\ctl\springboottest\config\RedisConfig.java
+@PropertySource("classpath:config.properties") 加载指定的配置文件
+@ConditionalOnProperty(name = "redis.type", havingValue = "1") 当配置文件满足条件时执行
+
