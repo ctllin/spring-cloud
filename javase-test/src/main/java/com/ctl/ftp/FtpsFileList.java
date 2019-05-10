@@ -34,17 +34,17 @@ public class FtpsFileList {
     static final String warName = "rtmart-base-acl-impl";
 
     public static void main(String[] args) {
-        //listFileNames("192.168.3.117", 22, "wise", "wise", "/home/wise/tomcat_8010/webapps");
-        ChannelSftp sftp = getSftp();
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-        String time = sdf.format(date);
-        try {
-            sftp.rename(warPathName,warPath+warName+"-"+time+".war.back");
-        } catch (SftpException e) {
-           logger.error("重命名失败",e);
-        }
-        close();
+        listFileNames("192.168.3.117", 22, "wise", "wise", "/home/wise/tomcat_8010/webapps");
+//        ChannelSftp sftp = getSftp();
+//        Date date = new Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+//        String time = sdf.format(date);
+//        try {
+//            sftp.rename(warPathName,warPath+warName+"-"+time+".war.back");
+//        } catch (SftpException e) {
+//           logger.error("重命名失败",e);
+//        }
+//        close();
     }
 
     public static  ChannelSftp getSftp() {
