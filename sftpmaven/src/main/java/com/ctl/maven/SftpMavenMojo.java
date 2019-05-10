@@ -38,17 +38,18 @@ import java.util.Properties;
  * @phase process-sources
  */
 @Mojo(name = "sftpmaven")
-class SftpMavenMojo extends AbstractMojo  {
+class SftpMavenMojo extends AbstractMojo {
     private static final Logger logger = LoggerFactory.getLogger(SftpMavenMojo.class);
     /**
      * Location of the file.
-     //sftp host
-     //sftp username
-     //sftp password
-     //sftp port
-     //war路径 /home/wise/tomcat_8010/webapps/
-     //war 名称 rtmart-base-acl-impl.war
-     //war路径 /home/wise/tomcat_8010/warback/
+     * //sftp host
+     * //sftp username
+     * //sftp password
+     * //sftp port
+     * //war路径 /home/wise/tomcat_8010/webapps/
+     * //war 名称 rtmart-base-acl-impl.war
+     * //war路径 /home/wise/tomcat_8010/warback/
+     *
      * @parameter expression="${project.build.directory}"
      * @required
      */
