@@ -38,29 +38,36 @@ import java.util.Properties;
  * @phase process-sources
  */
 @Mojo(name = "sftpmaven")
-class SftpMavenMojo extends AbstractMojo {
+class SftpMavenMojo extends AbstractMojo  {
     private static final Logger logger = LoggerFactory.getLogger(SftpMavenMojo.class);
     /**
      * Location of the file.
-     *
+     //sftp host
+     //sftp username
+     //sftp password
+     //sftp port
+     //war路径 /home/wise/tomcat_8010/webapps/
+     //war 名称 rtmart-base-acl-impl.war
+     //war路径 /home/wise/tomcat_8010/warback/
      * @parameter expression="${project.build.directory}"
      * @required
      */
 
     @Parameter
-    private String host; //sftp host
+    private String host;
     @Parameter
-    private String username; //sftp username
+    private String username;
     @Parameter
-    private String password; //sftp password
+    private String password;
     @Parameter
-    private Integer port; //sftp port
+    private Integer port;
     @Parameter
-    private String warPath;//war路径 /home/wise/tomcat_8010/webapps/
+    private String warPath;
     @Parameter
-    private String warName;//war 名称 rtmart-base-acl-impl.war
+    private String warName;
     @Parameter
-    private String barkWarPath;//war路径 /home/wise/tomcat_8010/warback/
+    private String barkWarPath;
+
 
     public void execute() {
         ChannelSftp sftp = null;
@@ -68,6 +75,7 @@ class SftpMavenMojo extends AbstractMojo {
         Session sshSession = null;
         JSch jsch = new JSch();
         try {
+            logger.info("username={},host={},port={}", username, host, port);
             jsch.getSession(username, host, port);
             sshSession = jsch.getSession(username, host, port);
             sshSession.setPassword(password);
@@ -93,7 +101,7 @@ class SftpMavenMojo extends AbstractMojo {
             sftp.rename(warPath + warName, bacPath);
             logger.info("war包原路径{},war包备份路径{}", warName + warPath, bacPath);
         } catch (Exception e) {
-            logger.error("链接错误", e);
+            logger.error("链接错误或包路径错误", e);
         } finally {
             closeChannel(sftp);
             closeChannel(channel);
