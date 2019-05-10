@@ -39,7 +39,6 @@ import java.util.Properties;
  */
 @Mojo(name = "sftp")
 class SftpMavenMojo extends AbstractMojo {
-    private static final Logger logger = LoggerFactory.getLogger(SftpMavenMojo.class);
     /**
      * Location of the file.
      * //sftp host
@@ -52,6 +51,7 @@ class SftpMavenMojo extends AbstractMojo {
      * @parameter expression="${project.build.directory}"
      * @required
      */
+    private static final Logger logger = LoggerFactory.getLogger(SftpMavenMojo.class);
     @Parameter
     private String host;
     @Parameter
