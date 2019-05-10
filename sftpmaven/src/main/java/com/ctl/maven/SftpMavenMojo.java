@@ -52,7 +52,6 @@ class SftpMavenMojo extends AbstractMojo  {
      * @parameter expression="${project.build.directory}"
      * @required
      */
-
     @Parameter
     private String host;
     @Parameter
@@ -67,8 +66,6 @@ class SftpMavenMojo extends AbstractMojo  {
     private String warName;
     @Parameter
     private String barkWarPath;
-
-
     public void execute() {
         ChannelSftp sftp = null;
         Channel channel = null;
