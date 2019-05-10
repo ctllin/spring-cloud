@@ -37,7 +37,7 @@ import java.util.Properties;
  * @goal touch
  * @phase process-sources
  */
-@Mojo(name = "sftpmaven")
+@Mojo(name = "sftp")
 class SftpMavenMojo extends AbstractMojo {
     private static final Logger logger = LoggerFactory.getLogger(SftpMavenMojo.class);
     /**
@@ -49,7 +49,6 @@ class SftpMavenMojo extends AbstractMojo {
      * //war路径 /home/wise/tomcat_8010/webapps/
      * //war 名称 rtmart-base-acl-impl.war
      * //war路径 /home/wise/tomcat_8010/warback/
-     *
      * @parameter expression="${project.build.directory}"
      * @required
      */
@@ -67,62 +66,6 @@ class SftpMavenMojo extends AbstractMojo {
     private String warName;
     @Parameter
     private String barkWarPath;
-
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Integer getPort() {
-        return port;
-    }
-
-    public void setPort(Integer port) {
-        this.port = port;
-    }
-
-    public String getWarPath() {
-        return warPath;
-    }
-
-    public void setWarPath(String warPath) {
-        this.warPath = warPath;
-    }
-
-    public String getWarName() {
-        return warName;
-    }
-
-    public void setWarName(String warName) {
-        this.warName = warName;
-    }
-
-    public String getBarkWarPath() {
-        return barkWarPath;
-    }
-
-    public void setBarkWarPath(String barkWarPath) {
-        this.barkWarPath = barkWarPath;
-    }
 
     public void execute() {
         ChannelSftp sftp = null;
