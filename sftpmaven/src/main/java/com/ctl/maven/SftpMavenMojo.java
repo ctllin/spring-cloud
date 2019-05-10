@@ -85,10 +85,10 @@ class SftpMavenMojo extends AbstractMojo {
             String time = sdf.format(date);
             String bacPath = null;
             if (barkWarPath != null && !"".equals(barkWarPath)) {
+                sftp.mkdir(barkWarPath);
                 bacPath = barkWarPath + warName + "." + time + ".bak";
             } else {
                 bacPath = warPath + warName + "." + time + ".bak";
-
             }
             sftp.rename(warPath + warName, bacPath);
             logger.info("war包原路径{},war包备份路径{}", warName + warPath, bacPath);
