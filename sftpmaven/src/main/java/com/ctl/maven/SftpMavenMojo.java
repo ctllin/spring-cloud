@@ -74,7 +74,7 @@ class SftpMavenMojo extends AbstractMojo {
         JSch jsch = new JSch();
         try {
             logger.info("username={},host={},port={}", username, host, port);
-            jsch.getSession(username, host, port);
+            //sshSession=jsch.getSession(username, host, port);
             sshSession = jsch.getSession(username, host, port);
             sshSession.setPassword(password);
             Properties sshConfig = new Properties();
