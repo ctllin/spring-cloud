@@ -310,4 +310,7 @@ F:\github\spring-cloud\spring-boot-test\pom.xml
 Maven 配置 Tomcat8+ 部署方案
 Maven配置多个镜像（切换仓库下载Jar包）
 
+==========================tomcat8war包卸载=========================
+F:\github\spring-cloud\javase-test\src\main\java\com\ctl\tomcat8\TomcatTest.java
+
 
