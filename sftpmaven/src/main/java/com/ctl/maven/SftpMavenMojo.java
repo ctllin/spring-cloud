@@ -91,7 +91,7 @@ class SftpMavenMojo extends AbstractMojo {
                 try {
                     sftp.mkdir(barkWarPath);
                 } catch (SftpException e) {
-                    
+
                 }
                 bacPath = barkWarPath + warName + "." + time + ".bak";
             } else {
