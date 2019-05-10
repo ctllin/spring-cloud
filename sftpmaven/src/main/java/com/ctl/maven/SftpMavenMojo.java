@@ -46,19 +46,21 @@ class SftpMavenMojo extends AbstractMojo {
      * @parameter expression="${project.build.directory}"
      * @required
      */
-    @Parameter
-    private String host;
-    @Parameter
-    private String username;
-    @Parameter
-    private String password;
-    @Parameter
-    private Integer port;
-    @Parameter
-    private String warPath;
-    @Parameter
-    private String warName;
 
+    @Parameter
+    private String host; //sftp host
+    @Parameter
+    private String username; //sftp username
+    @Parameter
+    private String password; //sftp password
+    @Parameter
+    private Integer port; //sftp port
+    @Parameter
+    private String warPath;//war路径 /home/wise/tomcat_8010/webapps/
+    @Parameter
+    private String warName;//war 名称 rtmart-base-acl-impl.war
+    @Parameter
+    private String barkWarPath;//war路径 /home/wise/tomcat_8010/warback/
 
     public void execute() {
         ChannelSftp sftp = null;
@@ -81,9 +83,15 @@ class SftpMavenMojo extends AbstractMojo {
             Date date = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
             String time = sdf.format(date);
-            String backWarPath = warPath + warName + "." + time + ".bak";
-            sftp.rename(warPath + warName, backWarPath);
-            logger.info("war包原路径{},war包备份路径{}",warName+warPath,backWarPath);
+            String bacPath = null;
+            if (barkWarPath != null && !"".equals(barkWarPath)) {
+                bacPath = barkWarPath + warName + "." + time + ".bak";
+            } else {
+                bacPath = warPath + warName + "." + time + ".bak";
+
+            }
+            sftp.rename(warPath + warName, bacPath);
+            logger.info("war包原路径{},war包备份路径{}", warName + warPath, bacPath);
         } catch (Exception e) {
             logger.error("链接错误", e);
         } finally {
