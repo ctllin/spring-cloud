@@ -16,10 +16,7 @@ package com.ctl.maven;
  * limitations under the License.
  */
 
-import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.Session;
+import com.jcraft.jsch.*;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -91,7 +88,11 @@ class SftpMavenMojo extends AbstractMojo {
             String time = sdf.format(date);
             String bacPath = null;
             if (barkWarPath != null && !"".equals(barkWarPath)) {
-                sftp.mkdir(barkWarPath);
+                try {
+                    sftp.mkdir(barkWarPath);
+                } catch (SftpException e) {
+                    
+                }
                 bacPath = barkWarPath + warName + "." + time + ".bak";
             } else {
                 bacPath = warPath + warName + "." + time + ".bak";
