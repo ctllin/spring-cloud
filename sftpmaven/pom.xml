@@ -62,22 +62,22 @@
     </dependencies>
     <build>
         <plugins>
-            <plugin>
+           <!-- <plugin>
                 <groupId>com.hanshow.wise.base</groupId>
                 <artifactId>warback</artifactId>
                 <version>1.0.1-SNAPSHOT</version>
                 <configuration>
                     <host>192.168.3.117</host>
-                  <!--  <username>wise</username>
+                  &lt;!&ndash;  <username>wise</username>
                     <password>wise</password>
-                    <port>22</port>-->
+                    <port>22</port>&ndash;&gt;
                     <username>root</username>
                     <password>123456</password>
                     <port>12321</port>
                     <warPath>/home/wise/tomcat_8010/webapps/</warPath>
                     <warName>rtmart-base-acl-impl12.war</warName>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
     <distributionManagement>
