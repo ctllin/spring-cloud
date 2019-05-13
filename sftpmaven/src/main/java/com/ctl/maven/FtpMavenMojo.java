@@ -35,9 +35,10 @@ import java.util.Properties;
  *
  * @phase process-sources
  */
-@Mojo(name = "sftp")
-class SftpMavenMojo extends AbstractMojo {
+@Mojo(name = "ftp")
+class FtpMavenMojo extends AbstractMojo {
     /**
+     * Location of the file.
      * //sftp host
      * //sftp username
      * //sftp password
@@ -45,10 +46,12 @@ class SftpMavenMojo extends AbstractMojo {
      * //war路径 /home/wise/tomcat_8010/webapps/
      * //war 名称 rtmart-base-acl-impl.war
      * //war路径 /home/wise/tomcat_8010/warback/
+     *
+     * @parameter expression="${project.build.directory}"
+     * @required
      */
-    private static final Logger logger = LoggerFactory.getLogger(SftpMavenMojo.class);
+    private static final Logger logger = LoggerFactory.getLogger(FtpMavenMojo.class);
     /**
-     * @parameter expression="${sftp.host}"
      * @required
      */
     @Parameter
@@ -70,7 +73,49 @@ class SftpMavenMojo extends AbstractMojo {
 
     public void execute() {
         logger.info("ftpType={}", ftpType);
-        if (ftpType != null && "ftp".equals(ftpType)) {
+        if (ftpType != null && "sftp".equals(ftpType)) {
+            ChannelSftp sftp = null;
+            Channel channel = null;
+            Session sshSession = null;
+            JSch jsch = new JSch();
+            try {
+                logger.info("username={},host={},port={},password={}", username, host, port, password);
+                sshSession = jsch.getSession(username, host, port);
+                sshSession.setPassword(password);
+                Properties sshConfig = new Properties();
+                sshConfig.put("StrictHostKeyChecking", "no");
+                sshSession.setConfig(sshConfig);
+                sshSession.connect();
+                logger.debug("Session connected!");
+                channel = sshSession.openChannel("sftp");
+                channel.connect();
+                logger.debug("Channel connected!");
+                sftp = (ChannelSftp) channel;
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                String time = sdf.format(date);
+                String bacPath;
+                if (barkWarPath != null && !"".equals(barkWarPath)) {
+                    try {
+                        sftp.mkdir(barkWarPath);
+                    } catch (SftpException e) {
+                        logger.error("备份失败", e);
+                        return;
+                    }
+                    bacPath = barkWarPath + warName + "." + time + ".bak";
+                } else {
+                    bacPath = warPath + warName + "." + time + ".bak";
+                }
+                sftp.rename(warPath + warName, bacPath);
+                logger.info("war包原路径{},war包备份路径{}", warName + warPath, bacPath);
+            } catch (Exception e) {
+                logger.error("链接错误或包路径错误", e);
+            } finally {
+                closeChannel(sftp);
+                closeChannel(channel);
+                closeSession(sshSession);
+            }
+        } else {
             FTPClient fClient = null;
             try {
                 fClient = new FTPClient();
@@ -118,48 +163,6 @@ class SftpMavenMojo extends AbstractMojo {
 
                 }
             }
-        } else {
-            ChannelSftp sftp = null;
-            Channel channel = null;
-            Session sshSession = null;
-            JSch jsch = new JSch();
-            try {
-                logger.info("username={},host={},port={},password={}", username, host, port, password);
-                sshSession = jsch.getSession(username, host, port);
-                sshSession.setPassword(password);
-                Properties sshConfig = new Properties();
-                sshConfig.put("StrictHostKeyChecking", "no");
-                sshSession.setConfig(sshConfig);
-                sshSession.connect();
-                logger.debug("Session connected!");
-                channel = sshSession.openChannel("sftp");
-                channel.connect();
-                logger.debug("Channel connected!");
-                sftp = (ChannelSftp) channel;
-                Date date = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                String time = sdf.format(date);
-                String bacPath;
-                if (barkWarPath != null && !"".equals(barkWarPath)) {
-                    try {
-                        sftp.mkdir(barkWarPath);
-                    } catch (SftpException e) {
-                        logger.error("备份失败", e);
-                        return;
-                    }
-                    bacPath = barkWarPath + warName + "." + time + ".bak";
-                } else {
-                    bacPath = warPath + warName + "." + time + ".bak";
-                }
-                sftp.rename(warPath + warName, bacPath);
-                logger.info("war包原路径{},war包备份路径{}", warName + warPath, bacPath);
-            } catch (Exception e) {
-                logger.error("链接错误或包路径错误", e);
-            } finally {
-                closeChannel(sftp);
-                closeChannel(channel);
-                closeSession(sshSession);
-            }
         }
     }
 
@@ -180,6 +183,6 @@ class SftpMavenMojo extends AbstractMojo {
     }
 
     public static void main(String[] args) {
-        new SftpMavenMojo().execute();
+        new FtpMavenMojo().execute();
     }
 }
