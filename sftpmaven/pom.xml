@@ -71,9 +71,6 @@
                   <!--  <username>wise</username>
                     <password>wise</password>
                     <port>22</port>-->
-<!--
-                    <ftpType>ftp</ftpType>
--->
                     <username>root</username>
                     <password>123456</password>
                     <port>12321</port>
