@@ -4,7 +4,7 @@
     <groupId>com.ctl.maven</groupId>
     <artifactId>sftp-maven</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <name>sftp-maven Maven Mojo</name>
     <url>http://maven.apache.org</url>
     <dependencies>
@@ -20,6 +20,12 @@
             <version>3.6.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.6</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugin-tools/maven-plugin-annotations -->
         <dependency>
@@ -52,21 +58,25 @@
         </dependency>
     </dependencies>
     <build>
-       <!-- <plugins>
+        <plugins>
             <plugin>
                 <groupId>com.ctl.maven</groupId>
                 <artifactId>sftp-maven</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0.2-SNAPSHOT</version>
                 <configuration>
                     <host>192.168.3.117</host>
-                    <username>wise</username>
+                  <!--  <username>wise</username>
                     <password>wise</password>
-                    <port>22</port>
+                    <port>22</port>-->
+                    <ftpType>ftp</ftpType>
+                    <username>root</username>
+                    <password>123456</password>
+                    <port>12321</port>
                     <warPath>/home/wise/tomcat_8010/webapps/</warPath>
-                    <warName>rtmart-base-acl-impl.war</warName>
+                    <warName>rtmart-base-acl-impl1.war</warName>
                 </configuration>
             </plugin>
-        </plugins>-->
+        </plugins>
     </build>
     <distributionManagement>
         <repository>
