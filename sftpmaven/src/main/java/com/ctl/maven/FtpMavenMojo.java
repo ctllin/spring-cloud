@@ -38,7 +38,6 @@ import java.util.Properties;
 @Mojo(name = "ftp")
 class FtpMavenMojo extends AbstractMojo {
     /**
-     * Location of the file.
      * //sftp host
      * //sftp username
      * //sftp password
@@ -46,12 +45,10 @@ class FtpMavenMojo extends AbstractMojo {
      * //war路径 /home/wise/tomcat_8010/webapps/
      * //war 名称 rtmart-base-acl-impl.war
      * //war路径 /home/wise/tomcat_8010/warback/
-     *
-     * @parameter expression="${project.build.directory}"
-     * @required
      */
     private static final Logger logger = LoggerFactory.getLogger(FtpMavenMojo.class);
     /**
+     * @parameter expression="${sftp.host}"
      * @required
      */
     @Parameter
@@ -72,8 +69,8 @@ class FtpMavenMojo extends AbstractMojo {
     private String ftpType; //= "ftp";
 
     public void execute() {
-        logger.info("ftpType={}", ftpType);
         if (ftpType != null && "sftp".equals(ftpType)) {
+            logger.info("ftpType={}", "sftp");
             ChannelSftp sftp = null;
             Channel channel = null;
             Session sshSession = null;
@@ -85,6 +82,9 @@ class FtpMavenMojo extends AbstractMojo {
                 Properties sshConfig = new Properties();
                 sshConfig.put("StrictHostKeyChecking", "no");
                 sshSession.setConfig(sshConfig);
+                //设置超时
+                sshSession.setTimeout(5000);
+                //建立连接
                 sshSession.connect();
                 logger.debug("Session connected!");
                 channel = sshSession.openChannel("sftp");
@@ -116,6 +116,8 @@ class FtpMavenMojo extends AbstractMojo {
                 closeSession(sshSession);
             }
         } else {
+            logger.info("ftpType={}", "ftp");
+            logger.info("username={},host={},port={},password={}", username, host, port, password);
             FTPClient fClient = null;
             try {
                 fClient = new FTPClient();

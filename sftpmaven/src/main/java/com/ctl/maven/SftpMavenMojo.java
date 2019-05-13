@@ -69,8 +69,8 @@ class SftpMavenMojo extends AbstractMojo {
     private String ftpType; //= "ftp";
 
     public void execute() {
-        logger.info("ftpType={}", ftpType);
         if (ftpType != null && "ftp".equals(ftpType)) {
+            logger.info("ftpType={}", "ftp");
             FTPClient fClient = null;
             try {
                 fClient = new FTPClient();
@@ -119,6 +119,7 @@ class SftpMavenMojo extends AbstractMojo {
                 }
             }
         } else {
+            logger.info("ftpType={}", "sftp");
             ChannelSftp sftp = null;
             Channel channel = null;
             Session sshSession = null;
@@ -130,6 +131,9 @@ class SftpMavenMojo extends AbstractMojo {
                 Properties sshConfig = new Properties();
                 sshConfig.put("StrictHostKeyChecking", "no");
                 sshSession.setConfig(sshConfig);
+                //设置超时
+                sshSession.setTimeout(5000);
+                //建立连接
                 sshSession.connect();
                 logger.debug("Session connected!");
                 channel = sshSession.openChannel("sftp");
