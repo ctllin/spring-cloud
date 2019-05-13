@@ -86,10 +86,10 @@ class FtpMavenMojo extends AbstractMojo {
                 sshSession.setTimeout(5000);
                 //建立连接
                 sshSession.connect();
-                logger.debug("Session connected!");
+                logger.info("Session connected!");
                 channel = sshSession.openChannel("sftp");
                 channel.connect();
-                logger.debug("Channel connected!");
+                logger.info("Channel connected!");
                 sftp = (ChannelSftp) channel;
                 Date date = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -99,15 +99,14 @@ class FtpMavenMojo extends AbstractMojo {
                     try {
                         sftp.mkdir(barkWarPath);
                     } catch (SftpException e) {
-                        logger.error("备份失败", e);
-                        return;
+                        logger.warn("create backWarPath fail");
                     }
                     bacPath = barkWarPath + warName + "." + time + ".bak";
                 } else {
                     bacPath = warPath + warName + "." + time + ".bak";
                 }
                 sftp.rename(warPath + warName, bacPath);
-                logger.info("war包原路径{},war包备份路径{}", warName + warPath, bacPath);
+                logger.info("war包原路径{},war包备份路径{}", warPath+warName, bacPath);
             } catch (Exception e) {
                 logger.error("链接错误或包路径错误", e);
             } finally {
