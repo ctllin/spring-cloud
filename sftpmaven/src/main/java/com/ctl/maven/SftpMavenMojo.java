@@ -55,21 +55,21 @@ class SftpMavenMojo extends AbstractMojo {
      */
     private static final Logger logger = LoggerFactory.getLogger(SftpMavenMojo.class);
     @Parameter
-    private String host = "192.168.3.117";
+    private String host ; //= "192.168.3.117";
     @Parameter
-    private String username = "root";
+    private String username ; //= "root";
     @Parameter
-    private String password = "123456";
+    private String password ; //= "123456";
     @Parameter
     private Integer port = 12321;
     @Parameter
-    private String warPath = "/home/wise/tomcat_8010/webapps/";
+    private String warPath ; //= "/home/wise/tomcat_8010/webapps/";
     @Parameter
-    private String warName = "rtmart-base-acl-impl.war";
+    private String warName ; //= "rtmart-base-acl-impl.war";
     @Parameter
     private String barkWarPath;
     @Parameter
-    private String ftpType = "ftp";
+    private String ftpType ; //= "ftp";
 
     public void execute() {
         logger.info("ftpType={}", ftpType);
