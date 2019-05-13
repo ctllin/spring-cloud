@@ -61,7 +61,7 @@ class SftpMavenMojo extends AbstractMojo {
     @Parameter
     private String password ; //= "123456";
     @Parameter
-    private Integer port = 12321;
+    private Integer port ;//= 12321;
     @Parameter
     private String warPath ; //= "/home/wise/tomcat_8010/webapps/";
     @Parameter
