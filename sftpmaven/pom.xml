@@ -58,16 +58,16 @@
         </dependency>
     </dependencies>
     <build>
-        <plugins>
+       <!-- <plugins>
             <plugin>
                 <groupId>com.ctl.maven</groupId>
                 <artifactId>sftp-maven</artifactId>
                 <version>1.0.2-SNAPSHOT</version>
                 <configuration>
                     <host>192.168.3.117</host>
-                  <!--  <username>wise</username>
+                  &lt;!&ndash;  <username>wise</username>
                     <password>wise</password>
-                    <port>22</port>-->
+                    <port>22</port>&ndash;&gt;
                     <ftpType>ftp</ftpType>
                     <username>root</username>
                     <password>123456</password>
@@ -76,7 +76,7 @@
                     <warName>rtmart-base-acl-impl1.war</warName>
                 </configuration>
             </plugin>
-        </plugins>
+        </plugins>-->
     </build>
     <distributionManagement>
         <repository>
