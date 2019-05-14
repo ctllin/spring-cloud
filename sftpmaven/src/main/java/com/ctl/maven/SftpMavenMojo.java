@@ -119,102 +119,51 @@ class SftpMavenMojo extends AbstractMojo {
                 }
             }
         } else {
-            if (ftpType != null && "sftp".equals(ftpType)) {
-                logger.info("ftpType={}", "sftp");
-                ChannelSftp sftp = null;
-                Channel channel = null;
-                Session sshSession = null;
-                JSch jsch = new JSch();
-                try {
-                    logger.info("username={},host={},port={},password={}", username, host, port, password);
-                    sshSession = jsch.getSession(username, host, port);
-                    sshSession.setPassword(password);
-                    Properties sshConfig = new Properties();
-                    sshConfig.put("StrictHostKeyChecking", "no");
-                    sshSession.setConfig(sshConfig);
-                    //设置超时
-                    sshSession.setTimeout(5000);
-                    //建立连接
-                    sshSession.connect();
-                    logger.info("Session connected!");
-                    channel = sshSession.openChannel("sftp");
-                    channel.connect();
-                    logger.info("Channel connected!");
-                    sftp = (ChannelSftp) channel;
-                    Date date = new Date();
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                    String time = sdf.format(date);
-                    String bacPath;
-                    if (barkWarPath != null && !"".equals(barkWarPath)) {
-                        try {
-                            sftp.mkdir(barkWarPath);
-                        } catch (SftpException e) {
-                            logger.warn("create backWarPath fail");
-                        }
-                        bacPath = barkWarPath + warName + "." + time + ".bak";
-                    } else {
-                        bacPath = warPath + warName + "." + time + ".bak";
-                    }
-                    sftp.rename(warPath + warName, bacPath);
-                    logger.info("war包原路径{},war包备份路径{}", warPath+warName, bacPath);
-                } catch (Exception e) {
-                    logger.error("链接错误或包路径错误", e);
-                } finally {
-                    closeChannel(sftp);
-                    closeChannel(channel);
-                    closeSession(sshSession);
-                }
-            } else {
-                logger.info("ftpType={}", "ftp");
+            logger.info("ftpType={}", "sftp");
+            ChannelSftp sftp = null;
+            Channel channel = null;
+            Session sshSession = null;
+            JSch jsch = new JSch();
+            try {
                 logger.info("username={},host={},port={},password={}", username, host, port, password);
-                FTPClient fClient = null;
-                try {
-                    fClient = new FTPClient();
-                    fClient.connect(host, port);
-                    fClient.login(username, password);
-                    fClient.setDataTimeout(60000);       //设置传输超时时间为60秒
-                    fClient.setConnectTimeout(60000);       //连接超时为6
-                    int reply = fClient.getReplyCode();
-                    if (FTPReply.isPositiveCompletion(reply)) {// 登陆到ftp服务器
-                        fClient.setFileType(FTPClient.BINARY_FILE_TYPE);
-                        fClient.setFileTransferMode(FTPClient.STREAM_TRANSFER_MODE);
-                        logger.info("Client loin success：" + fClient.getStatus());
-                    } else {
-                        fClient.disconnect();
-                        logger.info("Client loin fail：");
-                        return;
+                sshSession = jsch.getSession(username, host, port);
+                sshSession.setPassword(password);
+                Properties sshConfig = new Properties();
+                sshConfig.put("StrictHostKeyChecking", "no");
+                sshSession.setConfig(sshConfig);
+                //设置超时
+                sshSession.setTimeout(5000);
+                //建立连接
+                sshSession.connect();
+                logger.info("Session connected!");
+                channel = sshSession.openChannel("sftp");
+                channel.connect();
+                logger.info("Channel connected!");
+                sftp = (ChannelSftp) channel;
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                String time = sdf.format(date);
+                String bacPath;
+                if (barkWarPath != null && !"".equals(barkWarPath)) {
+                    try {
+                        sftp.mkdir(barkWarPath);
+                    } catch (SftpException e) {
+                        logger.warn("create backWarPath fail");
                     }
-                    Date date = new Date();
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                    String time = sdf.format(date);
-                    String bacPath = null;
-                    if (barkWarPath != null && !"".equals(barkWarPath)) {
-                        fClient.mkd(barkWarPath);
-                        bacPath = barkWarPath + warName + "." + time + ".bak";
-                    } else {
-                        bacPath = warPath + warName + "." + time + ".bak";
-                    }
-                    boolean renameResult = fClient.rename(warPath + warName, bacPath);
-                    if (renameResult) {
-                        logger.info("war包原路径{},war包备份路径{}", warName + warPath, bacPath);
-                    } else {
-                        logger.info("备份失败,检查待备份文件是否存在");
-                    }
-                } catch (Exception e) {
-                    fClient = null;
-                    logger.error("Client login fail or execute back fail:", e);
-                } finally {
-                    if (fClient != null) {
-                        try {
-                            fClient.logout();
-                            fClient.disconnect();
-                        } catch (IOException e) {
-                            logger.error("ftp client exit fail", e);
-                        }
-
-                    }
+                    bacPath = barkWarPath + warName + "." + time + ".bak";
+                } else {
+                    bacPath = warPath + warName + "." + time + ".bak";
                 }
+                sftp.rename(warPath + warName, bacPath);
+                logger.info("war包原路径{},war包备份路径{}", warPath + warName, bacPath);
+            } catch (Exception e) {
+                logger.error("链接错误或包路径错误", e);
+            } finally {
+                closeChannel(sftp);
+                closeChannel(channel);
+                closeSession(sshSession);
             }
+
         }
     }
 
@@ -235,6 +184,14 @@ class SftpMavenMojo extends AbstractMojo {
     }
 
     public static void main(String[] args) {
-        new SftpMavenMojo().execute();
+        SftpMavenMojo sftpMavenMojo = new SftpMavenMojo();
+        sftpMavenMojo.host= "192.168.3.117";
+        sftpMavenMojo.username= "wise";
+        sftpMavenMojo.password= "wise";
+        sftpMavenMojo.warPath= "/home/wise/tomcat_8010/webapps/";
+        sftpMavenMojo.warName= "rtmart-base-acl-impl3.war";
+        sftpMavenMojo.barkWarPath= "";
+        sftpMavenMojo.port=22;
+         sftpMavenMojo.execute();
     }
 }
