@@ -76,7 +76,8 @@ class FtpMavenMojo extends AbstractMojo {
             Session sshSession = null;
             JSch jsch = new JSch();
             try {
-                logger.info("username={},host={},port={},password={}", username, host, port, password);
+                logger.info("host={},port={},username={},password={}", username, host, port, password);
+                logger.info("warPath={},warName={},barkWarPath={}", warPath, warName, barkWarPath);
                 sshSession = jsch.getSession(username, host, port);
                 sshSession.setPassword(password);
                 Properties sshConfig = new Properties();
@@ -106,7 +107,7 @@ class FtpMavenMojo extends AbstractMojo {
                     bacPath = warPath + warName + "." + time + ".bak";
                 }
                 sftp.rename(warPath + warName, bacPath);
-                logger.info("war包原路径{},war包备份路径{}", warPath+warName, bacPath);
+                logger.info("war包原路径{},war包备份路径{}", warPath + warName, bacPath);
             } catch (Exception e) {
                 logger.error("链接错误或包路径错误", e);
             } finally {
@@ -114,6 +115,7 @@ class FtpMavenMojo extends AbstractMojo {
                 closeChannel(channel);
                 closeSession(sshSession);
             }
+
         } else {
             logger.info("ftpType={}", "ftp");
             logger.info("username={},host={},port={},password={}", username, host, port, password);
