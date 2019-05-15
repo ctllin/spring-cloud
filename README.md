@@ -324,3 +324,5 @@ F:\github\spring-cloud\sftpmaven\pom.xml
 
 ==========================fastdfs文件上传=========================
 com.ctl.test.controller.FastdfsFileUploadController
+配置在
+F:\github\spring-cloud\spring-cloud-servcie-impl-controller-test\src\main\resources\applicationContext.xml
