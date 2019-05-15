@@ -19,5 +19,28 @@
 			<aop:declare-parents types-matching="com.ctl.test.sprinz.service.Performance+" implement-interface="com.ctl.test.sprinz.service.Encoreable" default-impl="com.ctl.test.sprinz.service.impl.EncoreableImpl"/>
 		</aop:aspect>
 	</aop:config>
-
+	<!--配置扫描包-->
+	<context:component-scan base-package="com.github.tobato.fastdfs.service,com.github.tobato.fastdfs.domain"/>
+	<!--配置连接管理器-->
+	<bean id="trackerConnectionManager" class="com.github.tobato.fastdfs.conn.TrackerConnectionManager">
+		<constructor-arg name="pool" ref="fdfsConnectionPool">
+		</constructor-arg>
+		<!--配置fastDFS tracker 服务器 ip:port 地址-->
+		<property name="trackerList">
+			<list>
+				<value>${tracker.url}</value>
+			</list>
+		</property>
+	</bean>
+	<!--配置连接池-->
+	<bean id="fdfsConnectionPool" class="com.github.tobato.fastdfs.conn.FdfsConnectionPool">
+		<!--注入连接池配置-->
+		<constructor-arg name="config" >
+			<bean class="com.github.tobato.fastdfs.conn.ConnectionPoolConfig"/>
+		</constructor-arg>
+		<!--注入连接池工厂-->
+		<constructor-arg name="factory" >
+			<bean class="com.github.tobato.fastdfs.conn.PooledConnectionFactory"/>
+		</constructor-arg>
+	</bean>
 </beans>

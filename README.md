@@ -322,3 +322,5 @@ F:\github\spring-cloud\sftpmaven\src\main\java\com\ctl\maven\SftpMavenMojo.java
 F:\github\spring-cloud\sftpmaven\pom.xml
 
 
+==========================fastdfs文件上传=========================
+com.ctl.test.controller.FastdfsFileUploadController
