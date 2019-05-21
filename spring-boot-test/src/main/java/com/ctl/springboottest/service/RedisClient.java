@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public interface RedisClient {
     /**
-     * 设置字符串 保存时间为制定时长
+     * 设置字符串 保存时间为指定时长
      *
      * @param key
      * @param value
@@ -19,7 +19,15 @@ public interface RedisClient {
      * @return
      */
     boolean setString(String key, String value, int expire);
-
+    /**
+     * 设置对象(不能为数组或list) 保存时间为指定时长
+     *
+     * @param key
+     * @param obj
+     * @param expire 保存时长单位秒
+     * @return
+     */
+    boolean setObject(String key, Object obj, int expire);
     /**
      * 设置字符串 一直存在
      *
@@ -28,7 +36,22 @@ public interface RedisClient {
      * @return
      */
     boolean setString(String key, String value);
-
+    /**
+     * 设置设置对象(不能为数组或list) 一直存在
+     *
+     * @param key
+     * @param obj
+     * @return
+     */
+    boolean setObject(String key, Object obj);
+    /**
+     * 设置字符串
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    boolean setNXString(String key, String value);
     /**
      * 获取字符串
      *
@@ -36,6 +59,13 @@ public interface RedisClient {
      * @return
      */
     String getString(String key);
+    /**
+     * 获取对象(不能为数组或list)
+     *
+     * @param key
+     * @return
+     */
+    <T> T  getObject(String key, Class<T> clazz) ;
 
     /**
      * 根据key删除字符串
@@ -113,4 +143,29 @@ public interface RedisClient {
      */
 
     Long getListLength(String key);
+
+    /**
+     * 设置list对象 保存时间为指定时长
+     *
+     * @param key
+     * @param list
+     * @param expire 保存时长单位秒
+     * @return
+     */
+    <T> boolean setListObj(String key, List<T> list, int expire);
+    /**
+     * 设置list对象
+     *
+     * @param key
+     * @param list
+     * @return
+     */
+    boolean setListObj(String key, List<Object> list);
+    /**
+     * 获取List 对象
+     *
+     * @param key
+     * @return
+     */
+    <T> List<T> getListObj(String key, Class<T> clazz);
 }
