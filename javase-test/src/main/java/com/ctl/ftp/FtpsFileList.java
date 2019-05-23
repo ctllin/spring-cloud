@@ -11,30 +11,38 @@ package com.ctl.ftp;
  * @date 2019-05-10 17:59
  */
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-
 import com.jcraft.jsch.*;
+import com.jcraft.jsch.ChannelSftp.LsEntry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jcraft.jsch.ChannelSftp.LsEntry;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.Vector;
 
 public class FtpsFileList {
     private static final Logger logger = LoggerFactory.getLogger(FtpsFileList.class);
     static  ChannelSftp sftp = null;
     static  Channel channel = null;
+    static  Channel channelExec = null;
     static  Session sshSession = null;
+    static  Session sessionExec = null;
     static final String host = "192.168.3.117";
     static final String username = "wise";
     static final String password = "wise";
     static final Integer port = 22;
-    static final String warPathName = "/home/wise/tomcat_8010/webapps/rtmart-base-acl-impl.war";
+    static final String warPathName = "/home/wise/tomcat_8010/webapps/wise-base-acl-impl.war";
     static final String warPath = "/home/wise/tomcat_8010/webapps/";
-    static final String warName = "rtmart-base-acl-impl";
+    static final String warName = "wise-base-acl-impl";
 
     public static void main(String[] args) {
         listFileNames("192.168.3.117", 22, "wise", "wise", "/home/wise/tomcat_8010/webapps");
+        executeCommand("cp /home/wise/tomcat_8010/webapps/wise-base-acl-impl.war /home/wise/tomcat_8010/webapps/wise-base-acl-impl.war.ctl");
+
 //        ChannelSftp sftp = getSftp();
 //        Date date = new Date();
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -45,6 +53,7 @@ public class FtpsFileList {
 //           logger.error("重命名失败",e);
 //        }
 //        close();
+
     }
 
     public static  ChannelSftp getSftp() {
@@ -130,4 +139,74 @@ public class FtpsFileList {
             }
         }
     }
+
+    /**
+     * 获取连接
+     * @return
+     */
+    private static ChannelExec getChannelExec() {
+        try {
+            if (channelExec != null && channelExec.isConnected()) {
+                return (ChannelExec) channelExec;
+            }
+            JSch jSch = new JSch();
+            if (sessionExec == null || !sessionExec.isConnected()) {
+                sessionExec = jSch.getSession(username,host , port);
+                sessionExec.setPassword(password);
+                Properties config = new Properties();
+                config.put("StrictHostKeyChecking", "no");
+                sessionExec.setConfig(config);
+                sessionExec.setTimeout(3000);
+                sessionExec.connect();
+            }
+            channelExec = sessionExec.openChannel("exec");
+        } catch (Exception e) {
+            if (sessionExec != null) {
+                sessionExec.disconnect();
+                sessionExec = null;
+            }
+            channelExec = null;
+        }
+        return channelExec == null ?null : (ChannelExec) channelExec;
+    }
+    /**
+     * 执行服务器端命令
+     */
+    public static boolean executeCommand(String command) {
+        boolean flag = false;
+        ChannelExec channelExec = getChannelExec();
+        if (channelExec == null) {
+            return flag;
+        }
+        try {
+            channelExec.setInputStream(null);
+            channelExec.setErrStream(System.err);
+            channelExec.setCommand(command);
+
+            InputStream in = channelExec.getInputStream();
+            channelExec.connect();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "utf-8"));
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            reader.close();
+            closeChannel(channelExec);
+
+            flag = true;
+        } catch (Exception e) {
+            System.out.println(e);
+            flag = false;
+        }finally {
+            if(channelExec!=null){
+                closeChannel(channelExec);
+                closeSession(sessionExec);
+            }
+        }
+        return flag;
+    }
+
+
 }

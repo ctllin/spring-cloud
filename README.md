@@ -316,6 +316,11 @@ F:\github\spring-cloud\javase-test\src\main\java\com\ctl\tomcat8\TomcatTest.java
 
 ==========================连接sftp=========================
 F:\github\spring-cloud\javase-test\src\main\java\com\ctl\ftp\FtpsFileList.java
+java通过sftp执行linux命令
+F:\github\spring-cloud\sftpmaven\src\main\java\com\ctl\maven\SftpExecCommandMavenMojo.java
+
+
+
 
 ==========================maven自定义插件=========================
 F:\github\spring-cloud\sftpmaven\src\main\java\com\ctl\maven\SftpMavenMojo.java
