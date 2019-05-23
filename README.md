@@ -318,7 +318,8 @@ F:\github\spring-cloud\javase-test\src\main\java\com\ctl\tomcat8\TomcatTest.java
 F:\github\spring-cloud\javase-test\src\main\java\com\ctl\ftp\FtpsFileList.java
 java通过sftp执行linux命令
 F:\github\spring-cloud\sftpmaven\src\main\java\com\ctl\maven\SftpExecCommandMavenMojo.java
-
+在pom中配置时间变量通过${}引用时间变量
+F:\github\spring-cloud\sftpmaven\pom.xml
 
 
 

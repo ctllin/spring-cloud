@@ -144,7 +144,7 @@ class SftpExecCommandMavenMojo extends AbstractMojo {
                 bacPath = warPath + warName + "." + time + ".bak";
             }
             if(command==null||"".equals(command.trim())){
-                command = "cp " + warPath + warName + " " + bacPath;
+                command = "mkdir -p "+bacPath+" && cp " + warPath + warName + " " + bacPath;
                 execCommandStr=command;
                 logger.info("默认executeCommand={}",command);
             }

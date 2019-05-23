@@ -4,10 +4,16 @@
 <!--
     <groupId>com.ctl.maven</groupId>
 -->
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 设置时间格式 -->
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+    </properties>
     <groupId>com.hanshow.wise.base</groupId>
     <artifactId>warback</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>maven-pugin Maven Mojo</name>
     <url>http://maven.apache.org</url>
     <dependencies>
@@ -62,22 +68,20 @@
     </dependencies>
     <build>
         <plugins>
-           <!-- <plugin>
+            <plugin>
                 <groupId>com.hanshow.wise.base</groupId>
                 <artifactId>warback</artifactId>
-                <version>1.0.1-SNAPSHOT</version>
+                <version>1.0.3-SNAPSHOT</version>
                 <configuration>
                     <host>192.168.3.117</host>
-                  &lt;!&ndash;  <username>wise</username>
+                    <username>wise</username>
                     <password>wise</password>
-                    <port>22</port>&ndash;&gt;
-                    <username>root</username>
-                    <password>123456</password>
-                    <port>12321</port>
+                    <port>22</port>
                     <warPath>/home/wise/tomcat_8010/webapps/</warPath>
-                    <warName>rtmart-base-acl-impl12.war</warName>
+                    <warName>wise-base-acl-impl.war</warName>
+                    <barkWarPath>/home/wise/tomcat_8010/backwars/${maven.build.timestamp}/</barkWarPath>
                 </configuration>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
     <distributionManagement>
