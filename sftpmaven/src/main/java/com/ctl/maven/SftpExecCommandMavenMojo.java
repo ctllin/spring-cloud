@@ -74,7 +74,7 @@ class SftpExecCommandMavenMojo extends AbstractMojo {
     @Parameter
     private String ftpType; //= "ftp";
     @Parameter
-    private String execCommandStr;
+    private String cmd;
 
     private void closeChannel(Channel channel) {
         if (channel != null) {
@@ -150,7 +150,7 @@ class SftpExecCommandMavenMojo extends AbstractMojo {
                 } else {
                     command = "cp " + warPath + warName + " " + bacPath;
                 }
-                execCommandStr = command;
+                cmd = command;
                 logger.info("默认executeCommand={}", command);
             }
             channelExec.setCommand(command);
@@ -178,11 +178,11 @@ class SftpExecCommandMavenMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        boolean executeCommand = executeCommand(execCommandStr);
+        boolean executeCommand = executeCommand(cmd);
         if(executeCommand){
-            logger.info("执行命令[{}]成功",execCommandStr);
+            logger.info("执行命令[{}]成功",cmd);
         }else {
-            logger.info("执行命令[{}]失败",execCommandStr);
+            logger.info("执行命令[{}]失败",cmd);
         }
     }
 }
