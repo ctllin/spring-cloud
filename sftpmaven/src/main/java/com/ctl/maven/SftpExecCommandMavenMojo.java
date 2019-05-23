@@ -143,10 +143,15 @@ class SftpExecCommandMavenMojo extends AbstractMojo {
             } else {
                 bacPath = warPath + warName + "." + time + ".bak";
             }
-            if(command==null||"".equals(command.trim())){
-                command = "mkdir -p "+bacPath+" && cp " + warPath + warName + " " + bacPath;
-                execCommandStr=command;
-                logger.info("默认executeCommand={}",command);
+            if (command == null || "".equals(command.trim())) {
+                if (barkWarPath != null && !"".equals(barkWarPath)) {
+
+                    command = "mkdir -p " + barkWarPath + " && cp " + warPath + warName + " " + bacPath;
+                } else {
+                    command = "cp " + warPath + warName + " " + bacPath;
+                }
+                execCommandStr = command;
+                logger.info("默认executeCommand={}", command);
             }
             channelExec.setCommand(command);
             InputStream in = channelExec.getInputStream();
@@ -160,10 +165,10 @@ class SftpExecCommandMavenMojo extends AbstractMojo {
             closeChannel(channelExec);
             flag = true;
         } catch (Exception e) {
-            logger.error("执行命令["+command+"]失败",e);
+            logger.error("执行命令[" + command + "]失败", e);
             flag = false;
-        }finally {
-            if(channelExec!=null){
+        } finally {
+            if (channelExec != null) {
                 closeChannel(channelExec);
                 closeSession(sessionExec);
             }
