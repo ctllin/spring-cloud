@@ -13,7 +13,7 @@
     <groupId>com.hanshow.wise.base</groupId>
     <artifactId>warback</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
     <name>maven-pugin Maven Mojo</name>
     <url>http://maven.apache.org</url>
     <dependencies>
@@ -74,7 +74,7 @@
         </dependency>
     </dependencies>
     <build>
-        <plugins>
+       <!-- <plugins>
             <plugin>
                 <groupId>com.hanshow.wise.base</groupId>
                 <artifactId>warback</artifactId>
@@ -90,7 +90,7 @@
                     <cmd>ls</cmd>
                 </configuration>
             </plugin>
-        </plugins>
+        </plugins>-->
     </build>
     <distributionManagement>
         <repository>
