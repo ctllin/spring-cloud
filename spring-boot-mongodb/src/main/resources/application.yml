@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:admin@192.168.42.29:27017/springboot-db
+#      username: admin
+#      password: admin
+#      host: 192.168.42.29
+#      port: 27017
+#      database: springboot-db
