@@ -18,12 +18,14 @@ import org.springframework.data.annotation.Id;
 @Data
 @AllArgsConstructor
 @ToString
-public class User {
+public class UserQuery {
     @Id
     private Long id;
     private String name;
     private Integer age;
-    public User() {
+    private Integer currentPage;
+    private Integer pageSize;
+    public UserQuery() {
     }
 
   /*  public User(Integer id, String name, Integer age) {
@@ -56,4 +58,31 @@ public class User {
         this.age = age;
     }
 
+    public Integer getCurrentPage() {
+        if(currentPage==null){
+            currentPage=1;
+
+        }else if(currentPage<=0){
+            currentPage=1;
+        }
+        return currentPage;
+    }
+
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public Integer getPageSize() {
+        if(pageSize==null){
+            pageSize=10;
+
+        }else if(pageSize<=0){
+            pageSize=10;
+        }
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
 }
