@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +20,13 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class LightCurtainData {
-//    @JsonProperty("id")
-//    @Id
-//    private Long id;
+
     @JsonProperty("deviceId")
     private String deviceId;
     @JsonProperty("sensorId")
     private String sensorId;
     @JsonProperty("position")
-    private List<Integer> position = new ArrayList<Integer>();
+    private List<Integer> position = new ArrayList<>();
     @JsonProperty("timestamp")
     private String timestamp;
 
@@ -83,15 +80,6 @@ public class LightCurtainData {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
-
-
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public String getDeviceId() {
         return deviceId;
