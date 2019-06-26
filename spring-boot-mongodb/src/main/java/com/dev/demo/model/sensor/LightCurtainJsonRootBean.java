@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "deviceId",
         "lightCurtainData"
 })
-public class SensorJsonRootBean {
+public class LightCurtainJsonRootBean {
 
     @JsonProperty("deviceId")
     private String deviceId;
@@ -63,7 +63,7 @@ public class SensorJsonRootBean {
                 "    \"timestamp\": \"1561192318389\"\n" +
                 "  }\n" +
                 "}";
-        SensorJsonRootBean rootBean = JSON.parseObject(srcJson.toString(), SensorJsonRootBean.class);
+        LightCurtainJsonRootBean rootBean = JSON.parseObject(srcJson.toString(), LightCurtainJsonRootBean.class);
         System.out.println(rootBean);
     }
 

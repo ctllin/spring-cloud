@@ -3,6 +3,9 @@ package com.dev.demo.model.sensor;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +16,14 @@ import java.util.List;
         "position",
         "timestamp"
 })
+@Data
+@AllArgsConstructor
 public class LightCurtainData {
-
+//    @JsonProperty("id")
+//    @Id
+//    private Long id;
+    @JsonProperty("deviceId")
+    private String deviceId;
     @JsonProperty("sensorId")
     private String sensorId;
     @JsonProperty("position")
@@ -22,6 +31,8 @@ public class LightCurtainData {
     @JsonProperty("timestamp")
     private String timestamp;
 
+    public LightCurtainData() {
+    }
 
     /**
      * @return The sensorId
@@ -72,4 +83,19 @@ public class LightCurtainData {
     }
 
 
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
 }
