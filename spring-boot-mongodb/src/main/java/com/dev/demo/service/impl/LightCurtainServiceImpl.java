@@ -1,6 +1,7 @@
 package com.dev.demo.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.dev.demo.controller.LightCurtainController;
 import com.dev.demo.model.constant.LightCurtainConstant;
 import com.dev.demo.model.sensor.LightCurtainData;
@@ -10,6 +11,9 @@ import com.dev.demo.service.LightCurtainService;
 import com.hanshow.wise.base.device.model.dto.DeviceInfoIncuTagDTO;
 import com.hanshow.wise.base.device.model.query.DeviceCheckExistQUERY;
 import com.hanshow.wise.base.device.service.DeviceService;
+import com.hanshow.wise.base.esl.model.dto.DeviceGoodsPrDTO;
+import com.hanshow.wise.base.esl.model.query.DeviceGoodsPrQUERY;
+import com.hanshow.wise.base.esl.service.EslService;
 import com.hanshow.wise.common.jo.BaseDTO;
 import com.hanshow.wise.common.jo.BaseQUERY;
 import org.slf4j.Logger;
@@ -25,6 +29,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class LightCurtainServiceImpl implements LightCurtainService {
@@ -36,6 +41,8 @@ public class LightCurtainServiceImpl implements LightCurtainService {
     private MongoTemplate mongoTemplate;
     @Autowired(required = false)
     private DeviceService deviceService;
+    @Autowired(required = false)
+    private EslService eslService;
     @Override
     public void save(BaseQUERY<LightCurtainJsonRootBean> record) {
         if (record == null || record.getData()==null|| record.getData().getLightCurtainData() == null) {
@@ -51,10 +58,22 @@ public class LightCurtainServiceImpl implements LightCurtainService {
             query.setRequestId(record.getRequestId());
             query.setTimestamp(record.getTimestamp());
             query.setData(deviceCheckExistQUERY);
-            BaseDTO<DeviceInfoIncuTagDTO> deviceByCode = deviceService.getDeviceByCode(query, record.getData().getDeviceId());
-            logger.info(JSON.toJSONString(deviceByCode));
+            BaseDTO<DeviceInfoIncuTagDTO> deviceByCodeDTO = deviceService.getDeviceByCode(query, record.getData().getDeviceId());
+            if(deviceByCodeDTO.success()){
+                DeviceGoodsPrQUERY deviceGoodsPrQUERY = new DeviceGoodsPrQUERY();
+                query.setMerchantId(deviceByCodeDTO.getData().getMarchantId());
+                deviceGoodsPrQUERY.setDeviceCode(record.getData().getDeviceId());
+                deviceGoodsPrQUERY.setStoreId(deviceByCodeDTO.getData().getStoreId());
+                BaseDTO<Map<String, List<DeviceGoodsPrDTO>>> deviceGoodsPrListDTO = eslService.getDeviceGoodsPrList(query, deviceGoodsPrQUERY);
+                if(deviceGoodsPrListDTO.success()){
+                    List<DeviceGoodsPrDTO> deviceGoodsPrDTOS = deviceGoodsPrListDTO.getData().get(deviceGoodsPrListDTO.getDataKey());
+                    logger.info(JSONArray.toJSONString(deviceGoodsPrDTOS));
+
+                }
+            }
+            logger.info(JSON.toJSONString(deviceByCodeDTO));
         } catch (Exception e) {
-            logger.error("", e);
+            logger.error("调用设备接口获取设备信息失败", e);
         }
 
         logger.info(JSON.toJSONString(save));

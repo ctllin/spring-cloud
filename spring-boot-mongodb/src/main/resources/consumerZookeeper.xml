@@ -3,14 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-    <dubbo:application name="demo-consumer" owner="guolin" organization="hanshow"/>
-    <!--<dubbo:registry address="multicast://224.5.6.7:1234" />-->
-    <!--<dubbo:registry address="zookeeper://192.168.42.29:2181"/>-->
-<!--
-    <dubbo:registry address="zookeeper://192.168.42.29:2181?backup=192.168.42.29:2182,192.168.42.29:2183"/>
--->
-    <!-- zookeeper服务关闭后dubbo依旧可以提供服务,原因是dubbo将服务地址放在磁盘的临时文件中,并加载到内存中及时删除了临时文件依旧可以调用服务 -->
-    <dubbo:registry address="zookeeper://192.168.2.53:2181" client="zkclient" />
+    <dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" organization="${dubbo.application.organization}"/>
+
+    <dubbo:registry address="${dubbo.registry.address}" client="zkclient" />
 
     <dubbo:reference id="deviceService" interface="com.hanshow.wise.base.device.service.DeviceService" timeout="10000" check="false"/>
+    <dubbo:reference id="eslService" interface="com.hanshow.wise.base.esl.service.EslService" timeout="10000" check="false"/>
 </beans>
