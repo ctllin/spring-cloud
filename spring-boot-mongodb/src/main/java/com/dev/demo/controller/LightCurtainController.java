@@ -22,7 +22,7 @@ public class LightCurtainController {
     @RequestMapping(value = "/message/receive", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
     @ResponseBody
     public Object receive(HttpServletRequest request, @RequestBody BaseQUERY<LightCurtainJsonRootBean> record) {
-        lightCurtainService.save(record.getData());
+        lightCurtainService.save(record);
         return BaseDTO.genSucBaseDTO(record, record.getData());
     }
 

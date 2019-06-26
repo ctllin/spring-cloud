@@ -27,7 +27,7 @@
     </appender>
 
     <!--你可能还需要加点这个玩意儿-->
-    <root level="debug">
+    <root level="info">
         <!--<appender-ref ref="kafkaAppender" />-->
         <appender-ref ref="console" />
         <!-- <appender-ref ref="file" /> -->

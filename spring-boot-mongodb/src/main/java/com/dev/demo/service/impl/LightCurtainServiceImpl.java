@@ -7,8 +7,14 @@ import com.dev.demo.model.sensor.LightCurtainData;
 import com.dev.demo.model.sensor.LightCurtainJsonRootBean;
 import com.dev.demo.service.LightCurtainRepository;
 import com.dev.demo.service.LightCurtainService;
+import com.hanshow.wise.base.device.model.dto.DeviceInfoIncuTagDTO;
+import com.hanshow.wise.base.device.model.query.DeviceCheckExistQUERY;
+import com.hanshow.wise.base.device.service.DeviceService;
+import com.hanshow.wise.common.jo.BaseDTO;
+import com.hanshow.wise.common.jo.BaseQUERY;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,15 +34,29 @@ public class LightCurtainServiceImpl implements LightCurtainService {
     private LightCurtainRepository lightCurtainRepository;
     @Autowired
     private MongoTemplate mongoTemplate;
-
+    @Autowired(required = false)
+    private DeviceService deviceService;
     @Override
-    public void save(LightCurtainJsonRootBean record) {
-        if (record == null || record.getLightCurtainData() == null) {
+    public void save(BaseQUERY<LightCurtainJsonRootBean> record) {
+        if (record == null || record.getData()==null|| record.getData().getLightCurtainData() == null) {
             return;
         }
-        LightCurtainData lightCurtainData = record.getLightCurtainData();
-        lightCurtainData.setDeviceId(record.getDeviceId());
+        LightCurtainData lightCurtainData = record.getData().getLightCurtainData();
+        lightCurtainData.setDeviceId(record.getData().getDeviceId());
         LightCurtainData save = lightCurtainRepository.save(lightCurtainData);
+        try {
+            DeviceCheckExistQUERY deviceCheckExistQUERY = new DeviceCheckExistQUERY();
+            deviceCheckExistQUERY.setDeviceCode(record.getData().getDeviceId());
+            BaseQUERY<DeviceCheckExistQUERY> query = new BaseQUERY<>();
+            query.setRequestId(record.getRequestId());
+            query.setTimestamp(record.getTimestamp());
+            query.setData(deviceCheckExistQUERY);
+            BaseDTO<DeviceInfoIncuTagDTO> deviceByCode = deviceService.getDeviceByCode(query, record.getData().getDeviceId());
+            logger.info(JSON.toJSONString(deviceByCode));
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+
         logger.info(JSON.toJSONString(save));
     }
 

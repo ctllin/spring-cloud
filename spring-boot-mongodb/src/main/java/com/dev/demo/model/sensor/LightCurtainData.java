@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @ToString
-public class LightCurtainData {
+public class LightCurtainData implements Serializable {
 
     @JsonProperty("deviceId")
     private String deviceId;
