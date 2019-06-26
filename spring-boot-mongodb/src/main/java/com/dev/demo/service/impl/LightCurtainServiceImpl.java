@@ -43,12 +43,12 @@ public class LightCurtainServiceImpl implements LightCurtainService {
     @Override
     public List<LightCurtainData> findByDeviceId(String deviceId) {
         Sort sort = Sort.by(Sort.Direction.ASC, "timestamp");
-        Pageable pageable = PageRequest.of(LightCurtainConstant.CURRENTPAGE, LightCurtainConstant.PAGESIZE, sort);
-        Criteria criteria = new Criteria();
+        Pageable pageable = PageRequest.of(LightCurtainConstant.CURRENTPAGE - 1, LightCurtainConstant.PAGESIZE, sort);
         Query query = new Query();
         query.with(pageable);
         query.with(sort);
-        criteria.and("deviceId").equals(deviceId);
+        Criteria criteria = new Criteria();
+        criteria.and("deviceId").is(deviceId);
         query.addCriteria(criteria);
         List<LightCurtainData> records = mongoTemplate.find(query, LightCurtainData.class);
         return records;
@@ -57,12 +57,12 @@ public class LightCurtainServiceImpl implements LightCurtainService {
     @Override
     public List<LightCurtainData> findBySensorId(String sensorId) {
         Sort sort = Sort.by(Sort.Direction.ASC, "timestamp");
-        Pageable pageable = PageRequest.of(LightCurtainConstant.CURRENTPAGE, LightCurtainConstant.PAGESIZE, sort);
+        Pageable pageable = PageRequest.of(LightCurtainConstant.CURRENTPAGE - 1, LightCurtainConstant.PAGESIZE, sort);
         Criteria criteria = new Criteria();
         Query query = new Query();
         query.with(pageable);
         query.with(sort);
-        criteria.and("sensorId").equals(sensorId);
+        criteria.and("sensorId").is(sensorId);
         query.addCriteria(criteria);
         List<LightCurtainData> records = mongoTemplate.find(query, LightCurtainData.class);
         return records;

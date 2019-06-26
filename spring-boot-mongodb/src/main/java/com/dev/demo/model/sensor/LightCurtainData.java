@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.List;
 })
 @Data
 @AllArgsConstructor
+@ToString
 public class LightCurtainData {
 //    @JsonProperty("id")
 //    @Id
