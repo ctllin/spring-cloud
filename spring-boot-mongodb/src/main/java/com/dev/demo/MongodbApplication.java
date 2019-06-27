@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource(locations = {"classpath:consumerZookeeper.xml"})
+@ImportResource(locations = {"classpath:spring-dubbo.xml"})
 public class MongodbApplication {
 
 	public static void main(String[] args) {
