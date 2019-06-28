@@ -21,13 +21,24 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class LightCurtainData implements Serializable {
-
+    /**
+     * 设备id
+     */
     @JsonProperty("deviceId")
     private String deviceId;
+    /**
+     * 传感器id
+     */
     @JsonProperty("sensorId")
     private String sensorId;
+    /**
+     * 传感器出发点坐标
+     */
     @JsonProperty("position")
     private List<Integer> position = new ArrayList<>();
+    /**
+     * 时间戳
+     */
     @JsonProperty("timestamp")
     private String timestamp;
 
