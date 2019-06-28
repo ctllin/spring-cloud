@@ -2,8 +2,7 @@ package com.dev.demo.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.dev.demo.controller.LightCurtainController;
-import com.dev.demo.model.constant.LightCurtainConstant;
+import com.dev.demo.model.constant.CurtainConstant;
 import com.dev.demo.model.sensor.LightCurtainData;
 import com.dev.demo.model.sensor.LightCurtainJsonRootBean;
 import com.dev.demo.service.LightCurtainRepository;
@@ -18,7 +17,6 @@ import com.hanshow.wise.common.jo.BaseDTO;
 import com.hanshow.wise.common.jo.BaseQUERY;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -82,7 +80,7 @@ public class LightCurtainServiceImpl implements LightCurtainService {
     @Override
     public List<LightCurtainData> findByDeviceId(String deviceId) {
         Sort sort = Sort.by(Sort.Direction.ASC, "timestamp");
-        Pageable pageable = PageRequest.of(LightCurtainConstant.CURRENTPAGE - 1, LightCurtainConstant.PAGESIZE, sort);
+        Pageable pageable = PageRequest.of(CurtainConstant.CURRENTPAGE - 1, CurtainConstant.PAGESIZE, sort);
         Query query = new Query();
         query.with(pageable);
         query.with(sort);
@@ -96,7 +94,7 @@ public class LightCurtainServiceImpl implements LightCurtainService {
     @Override
     public List<LightCurtainData> findBySensorId(String sensorId) {
         Sort sort = Sort.by(Sort.Direction.ASC, "timestamp");
-        Pageable pageable = PageRequest.of(LightCurtainConstant.CURRENTPAGE - 1, LightCurtainConstant.PAGESIZE, sort);
+        Pageable pageable = PageRequest.of(CurtainConstant.CURRENTPAGE - 1, CurtainConstant.PAGESIZE, sort);
         Criteria criteria = new Criteria();
         Query query = new Query();
         query.with(pageable);
