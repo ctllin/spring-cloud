@@ -1,5 +1,6 @@
 package com.dev.demo.service.impl;
 
+import com.dev.demo.model.sensor.Customer;
 import com.dev.demo.model.sensor.FaceInfo;
 import com.dev.demo.model.sensor.FaceJsonRootBean;
 import com.dev.demo.model.sensor.FaceStat;
@@ -31,6 +32,17 @@ public class FaceServiceImpl implements FaceService {
             return;
         }
         FaceJsonRootBean faceJsonRootBean = record.getData();
+        Customer customer = faceJsonRootBean.getCustomer();
+        FaceStat faceStat = customer.getFaceStat();
+        faceStat.setDeviceId(faceJsonRootBean.getDeviceId());
+        faceStatRepository.save(faceStat);
+        List<FaceInfo> faceInfoList = customer.getFaceInfo();
+        if(faceInfoList!=null){
+            faceInfoList.parallelStream().forEach(faceInfo -> {
+                faceInfo.setDeviceId(faceJsonRootBean.getDeviceId());
+                faceInfoRepository.save(faceInfo);
+            });
+        }
     }
 
     @Override
