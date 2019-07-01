@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-
+/**
+ * 人脸业务处理类
+ */
 @RestController
 @RequestMapping("/face")
 public class FaceController {

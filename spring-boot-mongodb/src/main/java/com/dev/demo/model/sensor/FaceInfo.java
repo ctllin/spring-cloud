@@ -23,7 +23,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @ToString
-public class FaceInfo implements Serializable{
+public class FaceInfo implements Serializable {
     public FaceInfo() {
     }
 
@@ -32,6 +32,11 @@ public class FaceInfo implements Serializable{
      */
     @JsonProperty("deviceId")
     private String deviceId;
+    /**
+     * 传感器id
+     */
+    @JsonProperty("sensorId")
+    private String sensorId;
     @JsonProperty("age")
     private String age;
     @JsonProperty("gender")
@@ -65,9 +70,7 @@ public class FaceInfo implements Serializable{
     private String faceArea;
 
     /**
-     *
-     * @return
-     *     The age
+     * @return The age
      */
     @JsonProperty("age")
     public String getAge() {
@@ -75,9 +78,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @param age
-     *     The age
+     * @param age The age
      */
     @JsonProperty("age")
     public void setAge(String age) {
@@ -85,9 +86,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @return
-     *     The gender
+     * @return The gender
      */
     @JsonProperty("gender")
     public String getGender() {
@@ -95,9 +94,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @param gender
-     *     The gender
+     * @param gender The gender
      */
     @JsonProperty("gender")
     public void setGender(String gender) {
@@ -105,9 +102,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @return
-     *     The faceId
+     * @return The faceId
      */
     @JsonProperty("faceId")
     public String getFaceId() {
@@ -115,9 +110,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @param faceId
-     *     The faceId
+     * @param faceId The faceId
      */
     @JsonProperty("faceId")
     public void setFaceId(String faceId) {
@@ -125,9 +118,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @return
-     *     The faceVec
+     * @return The faceVec
      */
     @JsonProperty("faceVec")
     public String getFaceVec() {
@@ -135,9 +126,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @param faceVec
-     *     The faceVec
+     * @param faceVec The faceVec
      */
     @JsonProperty("faceVec")
     public void setFaceVec(String faceVec) {
@@ -145,9 +134,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @return
-     *     The stayTiming
+     * @return The stayTiming
      */
     @JsonProperty("stayTiming")
     public String getStayTiming() {
@@ -155,9 +142,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @param stayTiming
-     *     The stayTiming
+     * @param stayTiming The stayTiming
      */
     @JsonProperty("stayTiming")
     public void setStayTiming(String stayTiming) {
@@ -165,9 +150,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @return
-     *     The firstIn
+     * @return The firstIn
      */
     @JsonProperty("firstIn")
     public String getFirstIn() {
@@ -175,9 +158,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @param firstIn
-     *     The firstIn
+     * @param firstIn The firstIn
      */
     @JsonProperty("firstIn")
     public void setFirstIn(String firstIn) {
@@ -185,9 +166,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @return
-     *     The count
+     * @return The count
      */
     @JsonProperty("count")
     public String getCount() {
@@ -195,9 +174,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @param count
-     *     The count
+     * @param count The count
      */
     @JsonProperty("count")
     public void setCount(String count) {
@@ -205,9 +182,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @return
-     *     The faceArea
+     * @return The faceArea
      */
     @JsonProperty("faceArea")
     public String getFaceArea() {
@@ -215,9 +190,7 @@ public class FaceInfo implements Serializable{
     }
 
     /**
-     *
-     * @param faceArea
-     *     The faceArea
+     * @param faceArea The faceArea
      */
     @JsonProperty("faceArea")
     public void setFaceArea(String faceArea) {
@@ -230,5 +203,13 @@ public class FaceInfo implements Serializable{
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
+    }
+
+    public String getSensorId() {
+        return sensorId;
+    }
+
+    public void setSensorId(String sensorId) {
+        this.sensorId = sensorId;
     }
 }

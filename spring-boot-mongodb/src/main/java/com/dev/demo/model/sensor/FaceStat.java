@@ -22,7 +22,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @ToString
-public class FaceStat implements Serializable{
+public class FaceStat implements Serializable {
     public FaceStat() {
     }
 
@@ -31,6 +31,12 @@ public class FaceStat implements Serializable{
      */
     @JsonProperty("deviceId")
     private String deviceId;
+    /**
+     * 传感器id
+     */
+    @JsonProperty("sensorId")
+    private String sensorId;
+
     /**
      * 人员侧脸经过数量
      */
@@ -122,5 +128,13 @@ public class FaceStat implements Serializable{
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
+    }
+
+    public String getSensorId() {
+        return sensorId;
+    }
+
+    public void setSensorId(String sensorId) {
+        this.sensorId = sensorId;
     }
 }

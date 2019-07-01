@@ -23,11 +23,22 @@ public class FaceStatServiceImpl implements FaceStatService {
     private MongoTemplate mongoTemplate;
 
 
+    /**
+     * 保存人脸统计信息
+     *
+     * @param record
+     */
     @Override
     public void save(BaseQUERY<FaceJsonRootBean> record) {
 
     }
 
+    /**
+     * 根据设备编号获取人脸统计信息
+     *
+     * @param deviceId
+     * @return
+     */
     @Override
     public List<FaceStat> findByDeviceId(String deviceId) {
         return null;

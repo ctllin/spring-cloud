@@ -1,5 +1,6 @@
 package com.dev.demo.service.impl;
 
+import com.dev.demo.model.sensor.FaceInfo;
 import com.dev.demo.model.sensor.FaceJsonRootBean;
 import com.dev.demo.model.sensor.FaceStat;
 import com.dev.demo.service.FaceInfoRepository;
@@ -22,18 +23,47 @@ public class FaceInfoServiceImpl implements FaceInfoService{
     @Autowired
     private MongoTemplate mongoTemplate;
 
+
+    /**
+     * 保存人脸信息
+     *
+     * @param record
+     */
     @Override
     public void save(BaseQUERY<FaceJsonRootBean> record) {
 
     }
 
+    /**
+     * 根据设备编号获取人脸信息
+     *
+     * @param deviceId
+     * @return
+     */
     @Override
-    public List<FaceStat> findByDeviceId(String deviceId) {
+    public List<FaceInfo> findByDeviceId(String deviceId) {
         return null;
     }
 
+    /**
+     * 根据faceId获取人脸信息
+     *
+     * @param faceId
+     * @return
+     */
     @Override
-    public List<FaceStat> findByFaceId(String faceId) {
+    public List<FaceInfo> findByFaceId(String faceId) {
+        return null;
+    }
+
+    /**
+     * 根据sensorId获取人脸信息
+     *
+     * @param sensorId
+     * @return
+     */
+    @Override
+    public List<FaceInfo> findBySensorId(String sensorId) {
         return null;
     }
 }

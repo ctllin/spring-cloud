@@ -1,6 +1,6 @@
 package com.dev.demo.service.impl;
 
-import com.dev.demo.model.sensor.Customer;
+import com.dev.demo.model.sensor.CameraData;
 import com.dev.demo.model.sensor.FaceInfo;
 import com.dev.demo.model.sensor.FaceJsonRootBean;
 import com.dev.demo.model.sensor.FaceStat;
@@ -25,33 +25,56 @@ public class FaceServiceImpl implements FaceService {
     private FaceStatRepository faceStatRepository;
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    /**
+     * 保存人脸相关信息
+     *
+     * @param record
+     */
     @Override
     public void save(BaseQUERY<FaceJsonRootBean> record) {
-        if(record.getData()==null){
+        if (record.getData() == null) {
             logger.error("face data is null");
             return;
         }
         FaceJsonRootBean faceJsonRootBean = record.getData();
-        Customer customer = faceJsonRootBean.getCustomer();
+        CameraData customer = faceJsonRootBean.getCameraData();
         FaceStat faceStat = customer.getFaceStat();
         faceStat.setDeviceId(faceJsonRootBean.getDeviceId());
+        faceStat.setSensorId(customer.getSensorId());
         faceStatRepository.save(faceStat);
         List<FaceInfo> faceInfoList = customer.getFaceInfo();
-        if(faceInfoList!=null){
+        if (faceInfoList != null) {
             faceInfoList.parallelStream().forEach(faceInfo -> {
                 faceInfo.setDeviceId(faceJsonRootBean.getDeviceId());
+                faceInfo.setSensorId(customer.getSensorId());
                 faceInfoRepository.save(faceInfo);
             });
         }
     }
 
+    /**
+     * 根据设备编号获取人脸信息
+     *
+     * @param deviceId
+     * @return
+     */
     @Override
     public List<FaceInfo> getFaceInfoByDeviceId(String deviceId) {
         return null;
     }
 
+    /**
+     * 根据设备编号获取统计信息
+     *
+     * @param deviceId
+     * @return
+     */
     @Override
     public List<FaceStat> getFaceStatByDeviceId(String deviceId) {
         return null;
     }
+
+
+
 }

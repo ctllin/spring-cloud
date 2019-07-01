@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+
+/**
+ * 光感业务处理类
+ */
 @RestController
 @RequestMapping("/lightCurtain")
 public class LightCurtainController {
