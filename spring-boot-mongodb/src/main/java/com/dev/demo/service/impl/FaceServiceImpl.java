@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,10 +22,6 @@ public class FaceServiceImpl implements FaceService {
     private FaceInfoRepository faceInfoRepository;
     @Autowired
     private FaceStatRepository faceStatRepository;
-    //    @Autowired
-//    private FaceInfoService faceInfoService;
-//    @Autowired
-//    private FaceStatService faceStatService;
     @Autowired
     private MongoTemplate mongoTemplate;
 
@@ -34,6 +31,7 @@ public class FaceServiceImpl implements FaceService {
      * @param record
      */
     @Override
+    @Transactional
     public void save(BaseQUERY<FaceJsonRootBean> record) {
         if (record == null || record.getData() == null) {
             logger.error("face data is null");
