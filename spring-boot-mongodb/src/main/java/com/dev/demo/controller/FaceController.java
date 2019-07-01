@@ -12,9 +12,13 @@ import com.hanshow.wise.common.jo.BaseQUERY;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 /**
  * 人脸业务处理类
  */
@@ -28,6 +32,7 @@ public class FaceController {
     @RequestMapping(value = "/message/receive", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
     @ResponseBody
     public Object receive(HttpServletRequest request, @RequestBody BaseQUERY<FaceJsonRootBean> record) {
+
         faceService.save(record);
         return BaseDTO.genSucBaseDTO(record, record.getData());
     }

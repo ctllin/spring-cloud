@@ -24,15 +24,6 @@ public class FaceInfoServiceImpl implements FaceInfoService{
     private MongoTemplate mongoTemplate;
 
 
-    /**
-     * 保存人脸信息
-     *
-     * @param record
-     */
-    @Override
-    public void save(BaseQUERY<FaceJsonRootBean> record) {
-
-    }
 
     /**
      * 根据设备编号获取人脸信息

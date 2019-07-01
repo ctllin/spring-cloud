@@ -4,9 +4,7 @@ import com.dev.demo.model.sensor.CameraData;
 import com.dev.demo.model.sensor.FaceInfo;
 import com.dev.demo.model.sensor.FaceJsonRootBean;
 import com.dev.demo.model.sensor.FaceStat;
-import com.dev.demo.service.FaceInfoRepository;
-import com.dev.demo.service.FaceService;
-import com.dev.demo.service.FaceStatRepository;
+import com.dev.demo.service.*;
 import com.hanshow.wise.common.jo.BaseQUERY;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +21,10 @@ public class FaceServiceImpl implements FaceService {
     private FaceInfoRepository faceInfoRepository;
     @Autowired
     private FaceStatRepository faceStatRepository;
+    //    @Autowired
+//    private FaceInfoService faceInfoService;
+//    @Autowired
+//    private FaceStatService faceStatService;
     @Autowired
     private MongoTemplate mongoTemplate;
 
@@ -33,7 +35,7 @@ public class FaceServiceImpl implements FaceService {
      */
     @Override
     public void save(BaseQUERY<FaceJsonRootBean> record) {
-        if (record.getData() == null) {
+        if (record == null || record.getData() == null) {
             logger.error("face data is null");
             return;
         }
@@ -43,6 +45,9 @@ public class FaceServiceImpl implements FaceService {
         faceStat.setDeviceId(faceJsonRootBean.getDeviceId());
         faceStat.setSensorId(customer.getSensorId());
         faceStatRepository.save(faceStat);
+        if (true) {
+            int i = 0 / 1;
+        }
         List<FaceInfo> faceInfoList = customer.getFaceInfo();
         if (faceInfoList != null) {
             faceInfoList.parallelStream().forEach(faceInfo -> {
@@ -74,7 +79,6 @@ public class FaceServiceImpl implements FaceService {
     public List<FaceStat> getFaceStatByDeviceId(String deviceId) {
         return null;
     }
-
 
 
 }

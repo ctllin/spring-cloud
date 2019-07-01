@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class FaceStatServiceImpl implements FaceStatService {
 
@@ -24,16 +25,6 @@ public class FaceStatServiceImpl implements FaceStatService {
 
 
     /**
-     * 保存人脸统计信息
-     *
-     * @param record
-     */
-    @Override
-    public void save(BaseQUERY<FaceJsonRootBean> record) {
-
-    }
-
-    /**
      * 根据设备编号获取人脸统计信息
      *
      * @param deviceId
@@ -41,6 +32,17 @@ public class FaceStatServiceImpl implements FaceStatService {
      */
     @Override
     public List<FaceStat> findByDeviceId(String deviceId) {
+        return null;
+    }
+
+    /**
+     * 根据sensorId获取人脸统计信息
+     *
+     * @param sensorId
+     * @return
+     */
+    @Override
+    public List<FaceStat> findBySensorId(String sensorId) {
         return null;
     }
 }

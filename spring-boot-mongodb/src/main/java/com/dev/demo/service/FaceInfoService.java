@@ -9,11 +9,11 @@ import java.util.List;
 
 @Repository
 public interface FaceInfoService {
-    /**
-     * 保存人脸信息
-     * @param record
-     */
-    void save(BaseQUERY<FaceJsonRootBean> record);
+//    /**
+//     * 保存人脸信息
+//     * @param record
+//     */
+//    void save(BaseQUERY<FaceJsonRootBean> record);
 
     /**
      * 根据设备编号获取人脸信息
