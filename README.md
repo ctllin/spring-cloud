@@ -1,3 +1,11 @@
+git clone 报“The project you were looking for could not be found.” 
+因为自己的项目不止一个 又有自动保存git密码的功能，当clone第二个项目的时候就报了如下错误
+之前一直是找到钥匙串删除，发现有时候并没有效果。今天在网上搜了一下 发现了一个新的解决办法
+在项目前面加用户名
+git clone https://rdc.hand-china.com/gitlab/项目.git
+git clone https://用户名@rdc.hand-china.com/gitlab/项目.git
+
+
 git init
 git add README.md
 git commit -m "first commit"
