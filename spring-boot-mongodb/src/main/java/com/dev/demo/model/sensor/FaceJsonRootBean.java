@@ -14,6 +14,8 @@ import java.io.Serializable;
         "customer"
 })
 public class FaceJsonRootBean implements Serializable {
+    public FaceJsonRootBean() {
+    }
 
     @JsonProperty("deviceId")
     private String deviceId;

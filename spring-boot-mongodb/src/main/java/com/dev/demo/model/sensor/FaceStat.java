@@ -23,6 +23,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 @ToString
 public class FaceStat implements Serializable{
+    public FaceStat() {
+    }
+
     /**
      * 设备id
      */

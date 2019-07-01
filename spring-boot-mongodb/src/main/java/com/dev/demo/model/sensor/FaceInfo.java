@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "age",
@@ -21,7 +23,10 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @ToString
-public class FaceInfo {
+public class FaceInfo implements Serializable{
+    public FaceInfo() {
+    }
+
     /**
      * 设备id
      */

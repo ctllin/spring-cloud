@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,9 @@ import java.util.Map;
         "faceInfo",
         "faceStat"
 })
-public class Customer {
+public class Customer implements Serializable{
+    public Customer() {
+    }
 
     @JsonProperty("faceInfo")
     private List<FaceInfo> faceInfo = new ArrayList<>();
