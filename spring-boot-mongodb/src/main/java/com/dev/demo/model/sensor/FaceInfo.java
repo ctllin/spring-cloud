@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -47,7 +49,7 @@ public class FaceInfo implements Serializable {
      * 面部角度
      */
     @JsonProperty("faceVec")
-    private String faceVec;
+    private List<Double> faceVec = new ArrayList<>();
     /**
      * 停留时间
      */
@@ -121,7 +123,7 @@ public class FaceInfo implements Serializable {
      * @return The faceVec
      */
     @JsonProperty("faceVec")
-    public String getFaceVec() {
+    public List<Double> getFaceVec() {
         return faceVec;
     }
 
@@ -129,7 +131,7 @@ public class FaceInfo implements Serializable {
      * @param faceVec The faceVec
      */
     @JsonProperty("faceVec")
-    public void setFaceVec(String faceVec) {
+    public void setFaceVec(List<Double> faceVec) {
         this.faceVec = faceVec;
     }
 
