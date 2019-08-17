@@ -1,8 +1,8 @@
 package com.ctl;
 
-import com.hanshow.wise.base.common.util.StringUtil;
-import net.sf.json.JSONArray;
-import org.springframework.beans.BeanUtils;
+
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.Deque;
@@ -126,7 +126,6 @@ public class Node {
 
         }
         addResourceChild(rootResourceList, deque);
-        System.out.println(StringUtil.formatJson(JSONArray.fromObject(rootResourceList).toString()));
     }
 
     /**
