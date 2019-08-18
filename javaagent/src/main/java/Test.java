@@ -32,19 +32,22 @@ public class Test {
 
                 int size = set.size();
                 set.add(file.getName());
-
+              if(file.getName().endsWith("mht")){
+                  file.delete();
+                  return;
+              }
                 if (set.size() == size) {
-                    if(!file.getName().endsWith("jpg")){
+                    if (!file.getName().toLowerCase().endsWith("jpg")) {
                         System.out.println(map.get(file.getName()) + "\t" + file.getAbsoluteFile());
                     }
                     list.add(file.getAbsolutePath());
                     //  file.delete();
-                    if(map.get(file.getName()).length()==file.length()){
+                    if (map.get(file.getName()).length() == file.length()) {
                         map.get(file.getName()).delete();
-                        System.out.println("------------"+file.getName());
-                    }else {
-                        if(!file.getName().endsWith("jpg")){
-                            System.out.println(map.get(file.getName()).length()+"\t"+file.length());
+                        System.out.println("------------" + file.getName());
+                    } else {
+                        if (!file.getName().toLowerCase().endsWith("jpg")) {
+                            System.out.println(map.get(file.getName()).length() + "\t" + file.length());
                         }
                     }
                 } else {
