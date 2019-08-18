@@ -1,0 +1,109 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+<!--
+    <groupId>com.ctl.maven</groupId>
+-->
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 设置时间格式 -->
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+    </properties>
+    <groupId>com.hanshow.wise.base</groupId>
+    <artifactId>warback</artifactId>
+    <packaging>maven-plugin</packaging>
+    <version>1.0.5-SNAPSHOT</version>
+    <name>maven-pugin Maven Mojo</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+        <!-- <dependency>
+           <groupId>org.apache.maven</groupId>
+           <artifactId>maven-plugin-api</artifactId>
+           <version>2.0</version>
+         </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-plugin-api -->
+        <!-- https://mvnrepository.com/artifact/ch.ethz.ganymed/ganymed-ssh2 -->
+        <dependency>
+            <groupId>ch.ethz.ganymed</groupId>
+            <artifactId>ganymed-ssh2</artifactId>
+            <version>262</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugin-tools/maven-plugin-annotations -->
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.6.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.55</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+       <!-- <plugins>
+            <plugin>
+                <groupId>com.hanshow.wise.base</groupId>
+                <artifactId>warback</artifactId>
+                <version>1.0.7-SNAPSHOT</version>
+                <configuration>
+                    <host>192.168.3.117</host>
+                    <username>wise</username>
+                    <password>wise</password>
+                    <port>22</port>
+                    <warPath>/home/wise/tomcat_8010/webapps/</warPath>
+                    <warName>wise-base-acl-impl.war</warName>
+                    <barkWarPath>/home/wise/tomcat_8010/backwars/${maven.build.timestamp}/</barkWarPath>
+                    <cmd>ls</cmd>
+                </configuration>
+            </plugin>
+        </plugins>-->
+    </build>
+    <distributionManagement>
+        <repository>
+            <id>maven-release</id>
+            <name>user release resp</name>
+            <url>http://192.168.2.216:8081/repository/maven-releases/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>maven-snapshots</id>
+            <name>user snapshot</name>
+            <url>http://192.168.2.216:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+
+    </distributionManagement>
+</project>

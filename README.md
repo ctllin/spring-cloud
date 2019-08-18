@@ -1,3 +1,11 @@
+git clone 报“The project you were looking for could not be found.” 
+因为自己的项目不止一个 又有自动保存git密码的功能，当clone第二个项目的时候就报了如下错误
+之前一直是找到钥匙串删除，发现有时候并没有效果。今天在网上搜了一下 发现了一个新的解决办法
+在项目前面加用户名
+git clone https://rdc.hand-china.com/gitlab/项目.git
+git clone https://用户名@rdc.hand-china.com/gitlab/项目.git
+
+
 git init
 git add README.md
 git commit -m "first commit"
@@ -293,3 +301,43 @@ spring-boot版本<version>2.1.3.RELEASE</version>
 ==========================Linux平台Java调用so库-JNI使用例子=========================
 F:\github\spring-cloud\javaagent  HSLienceProvider.java
 参考地址https://blog.csdn.net/rocgege/article/details/58585225
+
+F:\github\spring-cloud\javase-test\src\main\java\com\ctl\jni
+
+
+
+==========================springboot注解=========================
+F:\github\spring-cloud\spring-boot-test\src\main\java\com\ctl\springboottest\config\RedisConfig.java
+@PropertySource("classpath:config.properties") 加载指定的配置文件
+@ConditionalOnProperty(name = "redis.type", havingValue = "1") 当配置文件满足条件时执行
+@ImportResource(locations = {"classpath:spring-dubbo.xml","classpath:spring-mybatis.xml"}) 引用多个配置文件
+
+
+==========================maven配置=========================
+F:\github\spring-cloud\spring-boot-test\pom.xml
+Maven 配置 Tomcat8+ 部署方案
+Maven配置多个镜像（切换仓库下载Jar包）
+
+==========================tomcat8war包卸载=========================
+F:\github\spring-cloud\javase-test\src\main\java\com\ctl\tomcat8\TomcatTest.java
+
+
+==========================连接sftp=========================
+F:\github\spring-cloud\javase-test\src\main\java\com\ctl\ftp\FtpsFileList.java
+java通过sftp执行linux命令
+F:\github\spring-cloud\sftpmaven\src\main\java\com\ctl\maven\SftpExecCommandMavenMojo.java
+在pom中配置时间变量通过${}引用时间变量
+F:\github\spring-cloud\sftpmaven\pom.xml
+链接到服务器执行linux命令
+F:\github\spring-cloud\sftpmaven\src\main\java\com\ctl\maven\SSHMojo.java
+
+
+==========================maven自定义插件=========================
+F:\github\spring-cloud\sftpmaven\src\main\java\com\ctl\maven\SftpMavenMojo.java
+F:\github\spring-cloud\sftpmaven\pom.xml
+
+
+==========================fastdfs文件上传=========================
+com.ctl.test.controller.FastdfsFileUploadController
+配置在
+F:\github\spring-cloud\spring-cloud-servcie-impl-controller-test\src\main\resources\applicationContext.xml

@@ -1,0 +1,18 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:admin@192.168.42.29:27017/springboot-db
+server:
+  port: 18090
+dubbo:
+  application:
+    name: wise_data
+    owner: guolin
+    organization: hanshow
+  registry:
+    address: zookeeper://192.168.2.53:2181
+#      username: admin
+#      password: admin
+#      host: 192.168.42.29
+#      port: 27017
+#      database: springboot-db
