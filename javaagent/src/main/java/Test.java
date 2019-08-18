@@ -32,7 +32,7 @@ public class Test {
 
                 int size = set.size();
                 set.add(file.getName());
-              if(file.getName().endsWith("mht")){
+              if(file.getName().endsWith("mht")||file.getName().contains("torrent")){
                   file.delete();
                   return;
               }
