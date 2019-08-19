@@ -58,6 +58,16 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.57</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.8</version>
+			<scope>provided</scope>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -67,10 +77,10 @@
 					<groupId>org.junit.vintage</groupId>
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
-				<exclusion>
+				<!--<exclusion>
 					<groupId>junit</groupId>
 					<artifactId>junit</artifactId>
-				</exclusion>
+				</exclusion>-->
 			</exclusions>
 		</dependency>
 	</dependencies>
