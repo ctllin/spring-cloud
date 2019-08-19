@@ -22,7 +22,6 @@ import org.springframework.web.server.WebHandler;
 
 @Configuration
 @ComponentScan
-@EnableWebFlux
 public class WebFluxConfig implements WebFluxConfigurer {
     @Bean
     public WebHandler webHandler(ApplicationContext applicationContext) {
