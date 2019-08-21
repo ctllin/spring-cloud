@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: bd-job-executor-springboot
+  kafka:
+    bootstrap-servers: 192.168.42.29:9092,192.168.42.29:9093,192.168.42.29:9094
+    consumer:
+      groupId: executor
+      enable-auto-commit: true
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      valueDserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      groupId: executor
+      keyDeserializer: org.apache.kafka.common.serialization.StringSerializer
+      valueDserializer: org.apache.kafka.common.serialization.StringSerializer
+      batch-size: 16384
+      buffer-memory: 33554432
+    template:
+      default-topic: test-001
+
+
+#      //kafka集群机器
+#      public static final String KAFKA_HOSTS = "192.168.42.29:9092,192.168.42.29:9093,192.168.42.29:9094";
+#      //topic名称
+#      public static final String TOPIC = "topic_001";
