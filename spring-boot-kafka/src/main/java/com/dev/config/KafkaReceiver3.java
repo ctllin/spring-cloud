@@ -9,6 +9,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
@@ -44,7 +45,6 @@ public class KafkaReceiver3 {
     final static Properties props = new Properties();
     @Autowired
     private KafkaMessageListener kafkaMessageListener;
-
     /**
      *  consumer属性配置，hashMap
      * @return
@@ -65,12 +65,11 @@ public class KafkaReceiver3 {
      *  Kafka消费者工厂，DefaultKafkaConsumerFactory
      * @return
      */
-    @Bean("consumerFactory5")
+    @Bean("consumerFactory3")
     @Primary
     public DefaultKafkaConsumerFactory consumerFactory() {
         DefaultKafkaConsumerFactory container = new DefaultKafkaConsumerFactory(consumerProps3());
         return container;
-
     }
 
 

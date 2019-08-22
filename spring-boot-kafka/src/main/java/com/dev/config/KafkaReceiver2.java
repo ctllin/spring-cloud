@@ -14,7 +14,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.listener.AbstractMessageListenerContainer;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
@@ -69,7 +68,7 @@ public class KafkaReceiver2 {
         return factory;
     }
 
-    @KafkaListener(id = "batchListener3",
+    @KafkaListener(id = "batchListener2",
             topics = {TopicConst.EXECUTOR_TOPIC},
             containerFactory = "batchContainerFactory2",
             groupId = TopicConst.EXECUTOR_GROUPID_2)
