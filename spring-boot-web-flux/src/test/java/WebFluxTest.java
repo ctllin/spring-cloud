@@ -2,6 +2,9 @@ import org.junit.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * <p>Title: WebFluxTest</p>
  * <p>Description: </p>
@@ -19,5 +22,16 @@ public class WebFluxTest {
         System.out.println();
         Mono.just(1).subscribe(System.out::println);
         System.out.println();
+
+
+        Flux<String> seq1 = Flux.just("foo", "bar", "foobar");
+
+        List<String> iterable = Arrays.asList("foo", "bar", "foobar");
+        Flux<String> seq2 = Flux.fromIterable(iterable);
+        System.out.println(seq1.count());
+        System.out.println(seq1.index());
+        System.out.println(seq1.blockFirst());
+        System.out.println(seq1.blockLast());
+
     }
 }

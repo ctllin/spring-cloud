@@ -1,13 +1,14 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://admin:admin@192.168.42.29:27017/springboot-db
+      #uri: mongodb://wise:123456@192.168.6.201:27017/wise_base_data
+      uri: mongodb://wise:123456@192.168.42.29:27018/wise_base_data
 server:
-  port: 18090
+  port: 18091
 dubbo:
   application:
-    name: wise_data
-    owner: guolin
+    name: wise_base_data
+    owner: wise_base_data
     organization: hanshow
   registry:
     address: zookeeper://192.168.2.53:2181
