@@ -48,6 +48,7 @@ public class KafkaReceiver2 {
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG,1000);
         return props;
     }
 
@@ -64,7 +65,6 @@ public class KafkaReceiver2 {
         //设置为批量监听
         factory .setBatchListener(true);
         factory.getContainerProperties().setPollTimeout(3000);
-
         return factory;
     }
 
