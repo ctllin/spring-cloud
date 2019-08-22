@@ -88,7 +88,7 @@ public class KafkaReceiver3 {
         ContainerProperties containerProps2 = new ContainerProperties("topic_001");
         containerProps2.setMessageListener(kafkaMessageListener);
         containerProps2.setAckMode(ContainerProperties.AckMode.MANUAL);
-
+        containerProps2.setGroupId(TopicConst.EXECUTOR_GROUPID_3);
         KafkaMessageListenerContainer<String, String> container = new KafkaMessageListenerContainer<>(consumerFactory(),containerProps2);
         return container;
     }
