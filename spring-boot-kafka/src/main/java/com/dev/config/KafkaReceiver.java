@@ -108,7 +108,7 @@ public class KafkaReceiver {
             int size = messages.size();
             messages.parallelStream().forEach(message -> {
                 Message msg = JSON.parseObject(message, Message.class);
-                log.info("Receiver--->batchListener1 size={}, {} 接收消息 message ={}", size, timenow, JSON.toJSONString(msg));
+                log.info("KafkaReceiver1--->batchListener1 size={}, {} 接收消息 message ={}", size, timenow, JSON.toJSONString(msg));
             });
         }
     }
