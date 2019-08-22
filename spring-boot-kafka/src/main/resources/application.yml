@@ -5,7 +5,7 @@ spring:
     bootstrap-servers: 192.168.42.29:9092,192.168.42.29:9093,192.168.42.29:9094
     consumer:
       groupId: executor
-      enable-auto-commit: true
+      enable-auto-commit: false
       keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
       valueDserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:

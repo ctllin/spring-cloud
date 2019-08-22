@@ -17,4 +17,5 @@ public class TopicConst {
     public static final String EXECUTOR_TOPIC = "topic_001";
     public static final String EXECUTOR_GROUPID = "g_topic_001";
     public static final String EXECUTOR_GROUPID_2 = "g2_topic_001";
+    public static final String EXECUTOR_GROUPID_3 = "g3_topic_001";
 }
