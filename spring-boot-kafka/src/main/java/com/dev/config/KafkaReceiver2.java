@@ -85,6 +85,10 @@ public class KafkaReceiver2 {
                 log.info("Receiver2--->batchListener3 size={}, {} 接收消息 message ={},record={}", size, timenow, JSON.toJSONString(msg),JSON.toJSONString(message));
             });
         }
+        if (new Random().nextInt(100) % 3 == 1) {
+            ack.acknowledge();
+            System.out.println("Receiver2-->acknowledge");
+        }
     }
 
 }

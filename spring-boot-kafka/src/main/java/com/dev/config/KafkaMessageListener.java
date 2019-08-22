@@ -32,7 +32,7 @@ public class KafkaMessageListener implements AcknowledgingMessageListener<String
         Message record = JSON.parseObject(message.value(), Message.class);
         if (new Random().nextInt(100) % 3 == 1) {
             acknowledgment.acknowledge();
-            System.out.println("acknowledge");
+            System.out.println("KafkaReceiver3-->acknowledge");
         }
     }
 }
