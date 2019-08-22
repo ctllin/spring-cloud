@@ -128,6 +128,10 @@
     <logger name="org.mongodb.driver.protocol.command" level="INFO"/>
     <logger name="org.mongodb.driver.protocol.uri" level="INFO"/>
     <logger name="org.mongodb.driver.protocol.management" level="INFO"/>
+    <logger name="org.apache.kafka.clients.consumer.internals.AbstractCoordinator" level="ERROR"/>
+    <logger name="org.springframework.kafka.listener.KafkaMessageListenerContainer" level="ERROR"/>
+    <logger name="org.apache.kafka.clients.consumer.internals.ConsumerCoordinator" level="ERROR"/>
+    <logger name="org.apache.kafka.clients.Metadata" level="ERROR"/>
     <!--日志打印的包的范围，及分类日志文件存储 -->
     <logger name="com.hanshow.wise" additivity="false">
         <level value="INFO" />

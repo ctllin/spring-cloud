@@ -87,7 +87,7 @@ public class KafkaReceiver2 {
         }
         if (new Random().nextInt(100) % 3 == 1) {
             ack.acknowledge();
-            System.out.println("Receiver2-->acknowledge");
+            System.out.println("KafkaReceiver2-->acknowledge");
         }
     }
 
