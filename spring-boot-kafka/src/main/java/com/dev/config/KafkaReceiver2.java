@@ -41,6 +41,7 @@ public class KafkaReceiver2 {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, environment.getProperty("spring.kafka.bootstrap-servers"));
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, TopicConst.EXECUTOR_GROUPID_2);
         //一次拉取消息数量
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 4); //对应batchListener(List<String> messages) 一次最多可以拉取4条数据
         props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
@@ -82,12 +83,16 @@ public class KafkaReceiver2 {
             int size = data.size();
             data.parallelStream().forEach(message -> {
                 Message msg = JSON.parseObject( message.value(), Message.class);
-                log.info("Receiver2--->batchListener3 size={}, {} 接收消息 message ={},record={}", size, timenow, JSON.toJSONString(msg),JSON.toJSONString(message));
+                log.info("Receiver2--->batchListener2 size={}, {} 接收消息 message ={},record={}", size, timenow, JSON.toJSONString(msg),JSON.toJSONString(message));
             });
         }
         if (new Random().nextInt(100) % 3 == 1) {
-            ack.acknowledge();
-            System.out.println("KafkaReceiver2-->acknowledge");
+            try {
+                ack.acknowledge();
+                System.out.println("KafkaReceiver2-->acknowledge");
+            } catch (Exception e) {
+               log.error("KafkaReceiver2",e);
+            }
         }
     }
 

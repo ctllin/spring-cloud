@@ -24,15 +24,19 @@ import java.util.Random;
  */
 @Component(value = "kafkaMessageListener")
 public class KafkaMessageListener implements AcknowledgingMessageListener<String, String> {
-    private final Logger LOGGER = LoggerFactory.getLogger(KafkaMessageListener.class);
+    private final Logger logger = LoggerFactory.getLogger(KafkaMessageListener.class);
 
     @Override
     public void onMessage(final ConsumerRecord<String, String> message, final Acknowledgment acknowledgment) {
         System.out.println(message);
         Message record = JSON.parseObject(message.value(), Message.class);
         if (new Random().nextInt(100) % 3 == 1) {
-            acknowledgment.acknowledge();
-            System.out.println("KafkaReceiver3-->acknowledge");
+            try {
+                acknowledgment.acknowledge();
+                System.out.println("KafkaReceiver3-->acknowledge");
+            } catch (Exception e) {
+                logger.error("KafkaReceiver3",e);
+            }
         }
     }
 }
