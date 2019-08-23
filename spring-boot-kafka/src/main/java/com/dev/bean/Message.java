@@ -1,5 +1,9 @@
 package com.dev.bean;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,8 +17,15 @@ import java.util.Date;
  * @version 1.0
  * @date 2019-08-21 14:34
  */
+@Data
+@AllArgsConstructor
+@ToString
 public class Message implements Serializable {
     private static final long serialVersionUID = -4802872044453019581L;
+
+    public Message() {
+    }
+
     private Long id;    //id
 
     private Long times;    //times

@@ -60,6 +60,7 @@ public class KafkaReceiver3 {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG,1000);
+        props.put(ConsumerConfig.HEARTBEAT_INTERVAL_MS_CONFIG,5000);
 
         return props;
     }
@@ -87,7 +88,7 @@ public class KafkaReceiver3 {
     private KafkaMessageListenerContainer<String, String> createContainer() {
         ContainerProperties containerProps2 = new ContainerProperties("topic_001");
         containerProps2.setMessageListener(kafkaMessageListener);
-        containerProps2.setAckMode(ContainerProperties.AckMode.MANUAL);
+        containerProps2.setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
         containerProps2.setGroupId(TopicConst.EXECUTOR_GROUPID_3);
         KafkaMessageListenerContainer<String, String> container = new KafkaMessageListenerContainer<>(consumerFactory(),containerProps2);
         return container;

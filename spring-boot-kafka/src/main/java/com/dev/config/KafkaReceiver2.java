@@ -2,6 +2,7 @@ package com.dev.config;
 
 import com.alibaba.fastjson.JSON;
 import com.dev.bean.Message;
+import com.dev.repository.MessageRepository;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -35,6 +36,8 @@ public class KafkaReceiver2 {
     private static Logger log = LoggerFactory.getLogger(KafkaReceiver2.class);
     @Autowired
     private Environment environment;
+    @Autowired
+    private MessageRepository messageRepository;
     final static Properties props = new Properties();
 
     private Map<String, Object> consumerProps2() {
@@ -88,6 +91,13 @@ public class KafkaReceiver2 {
         }
         if (new Random().nextInt(100) % 3 == 1) {
             try {
+                if (data != null && data.size() != 0) {
+                    int size = data.size();
+                    data.parallelStream().forEach(message -> {
+                        Message msg = JSON.parseObject( message.value(), Message.class);
+                        messageRepository.save(msg);
+                    });
+                }
                 ack.acknowledge();
                 System.out.println("KafkaReceiver2-->acknowledge");
             } catch (Exception e) {

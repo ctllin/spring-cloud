@@ -1,4 +1,12 @@
 spring:
+  data:
+    mongodb:
+      uri: mongodb://wise:123456@192.168.2.228:27017/wise_base_data
+  redis:
+    database: 7
+    host: 192.168.2.228
+    password: 123456
+    port: 6379
   application:
     name: bd-job-executor-springboot
   kafka:
@@ -16,9 +24,9 @@ spring:
       buffer-memory: 33554432
     template:
       default-topic: test-001
-
-
 #      //kafka集群机器
 #      public static final String KAFKA_HOSTS = "192.168.42.29:9092,192.168.42.29:9093,192.168.42.29:9094";
 #      //topic名称
 #      public static final String TOPIC = "topic_001";
+server:
+  port: 8000
