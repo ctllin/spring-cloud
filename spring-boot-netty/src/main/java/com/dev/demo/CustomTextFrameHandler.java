@@ -31,21 +31,21 @@ public class CustomTextFrameHandler extends SimpleChannelInboundHandler<TextWebS
     @Override
     protected void messageReceived(ChannelHandlerContext ctx,TextWebSocketFrame frame) throws Exception {
         String request = frame.text();
-        logger.info("size:{}",recipients.size());
+        logger.info("size:{},ctx={},request={}",recipients.size(),ctx.name(),request);
         recipients.writeAndFlush(new TextWebSocketFrame(request.toUpperCase()));
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         recipients.add(ctx.channel());
-        logger.info("connect:{}",recipients.size());
+        logger.info("connect:{},ctx={}",recipients.size(),ctx.name());
     }
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) {
         try {
             recipients.remove(ctx.channel());
-            logger.info("删除channel成功:{}",recipients.size());
+            logger.info("删除channel成功:{},ctx={}",recipients.size(),ctx.name());
         } catch (Exception ex) {
             logger.info("删除channel失败:{}",recipients.size(),ex);
         }
