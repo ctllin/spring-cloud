@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.dev</groupId>
-	<artifactId>mongodb</artifactId>
+	<artifactId>spring-boot-mongodb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mongodb</name>
+	<name>spring-boot-mongodb</name>
 	<description>Demo project for Spring Boot</description>
    <packaging>war</packaging>
 	<properties>
