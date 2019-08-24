@@ -1,0 +1,10 @@
+spring:
+  redis:
+    cluster:
+      poolConfig:
+        max-total: 8
+        max-idle: 8
+        max-wait-millis: -1
+        min-idle: 0
+      nodes: 192.168.3.117:6380,192.168.3.117:6381,192.168.3.117:6382,192.168.3.117:6383,192.168.3.117:6384,192.168.3.117:6385
+    password: 123456
