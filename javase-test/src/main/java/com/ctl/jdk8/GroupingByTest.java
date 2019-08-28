@@ -34,5 +34,9 @@ public class GroupingByTest {
         Map<String, Double> sumMap1 = fruitList.stream().collect(Collectors.groupingBy(Fruit::getName, Collectors.summingDouble(Fruit::getPrice)));
         System.out.println(sumMap1);
 
+        Map<String, List<Fruit>> mapList = fruitList.stream().collect(Collectors.groupingBy(Fruit::getName));
+        System.out.println(mapList);
+
+
     }
 }
