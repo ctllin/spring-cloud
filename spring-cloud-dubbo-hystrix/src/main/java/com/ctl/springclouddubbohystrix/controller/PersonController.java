@@ -41,3 +41,5 @@ public class PersonController {
 }
 //http://localhost:9090/hi
 //http://localhost:9090/hi2
+//http://localhost:9090/hystrix
+//http://localhost:9090/hystrix.stream
