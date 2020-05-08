@@ -1,6 +1,8 @@
 package com.ctl.springclouddubbohystrix.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * <p>Title: User</p>
@@ -13,9 +15,12 @@ import lombok.Data;
  * @date 2020-05-08 09:34
  */
 @Data
+@Accessors(chain = true)
 public class User {
     private Long id;
     private String name;
     private Integer age;
     private String email;
+    @TableField(exist = false)
+    private Integer count;
 }

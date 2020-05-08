@@ -1,0 +1,23 @@
+# DataSource Config
+#spring:
+#  datasource:
+#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    schema: classpath:db/schema-h2.sql
+#    data: classpath:db/data-h2.sql
+#    url: jdbc:p6spy:h2:mem:test
+#    username: root
+#    password: test
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    schema: classpath:db/schema-h2.sql
+    data: classpath:db/data-h2.sql
+    url: jdbc:mysql://192.168.2.69:3306/test
+    username: root
+    password: NewPassword.2019
+# Logger Config
+logging:
+  level:
+    com.baomidou.mybatisplus.samples: debug
+# MyBatis-Plus 配置该演示无

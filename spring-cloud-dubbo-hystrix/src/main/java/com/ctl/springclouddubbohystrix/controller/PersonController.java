@@ -1,5 +1,7 @@
 package com.ctl.springclouddubbohystrix.controller;
 
+import com.ctl.springclouddubbohystrix.mapper.UserMapper;
+import com.ctl.springclouddubbohystrix.model.User;
 import com.ctl.springclouddubbohystrix.service.PersonService;
 import com.ctl.springclouddubbohystrix.service.PersonService2;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -10,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PersonController {
 
-    @Autowired(required = false)
+    @Autowired
     private PersonService personService;
-    @Autowired(required = false)
+    @Autowired
     private PersonService2 personService2;
-
+    @Autowired(required = false)
+    private UserMapper userMapper;
     @HystrixCommand(fallbackMethod = "hiError")
     @RequestMapping(value = "hi")
     public String sayHi() {
@@ -30,6 +33,9 @@ public class PersonController {
     }
     @RequestMapping(value = "hi3")
     public String sayHi3(String id) {
+        User user = new User();
+        user.setAge(1);
+        userMapper.insert(user);
         return personService2.callSayHi3(id);
     }
 }
