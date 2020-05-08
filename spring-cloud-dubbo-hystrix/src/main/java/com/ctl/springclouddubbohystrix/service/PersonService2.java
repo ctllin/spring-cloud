@@ -11,5 +11,6 @@ package com.ctl.springclouddubbohystrix.service;
  * @date 2020-04-30 13:54
  */
 public interface PersonService2 {
-    String callSayHi();
+    String callSayHi(String id);
+    String callSayHi3(String id);
 }

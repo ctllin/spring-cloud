@@ -13,10 +13,16 @@ public class PersonService2Impl implements PersonService2 {
 
     @Override
     @HystrixCommand(fallbackMethod = "hiError")
-    public String callSayHi() {
+    public String callSayHi(String id) {
         return personService.sayHi();
     }
-    public String hiError() {
-        return "Hystrix fallback from service";
+
+    @Override
+    public String callSayHi3(String id) {
+        return personService.sayHi();
+    }
+
+    public String hiError(String id) {
+        return "Hystrix fallback from service"+id;
     }
 }

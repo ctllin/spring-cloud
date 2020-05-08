@@ -25,8 +25,12 @@ public class PersonController {
         return "Hystrix fallback";
     }
     @RequestMapping(value = "hi2")
-    public String sayHi2() {
-        return personService2.callSayHi();
+    public String sayHi2(String id) {
+        return personService2.callSayHi(id);
+    }
+    @RequestMapping(value = "hi3")
+    public String sayHi3(String id) {
+        return personService2.callSayHi3(id);
     }
 }
 //http://localhost:9090/hi
