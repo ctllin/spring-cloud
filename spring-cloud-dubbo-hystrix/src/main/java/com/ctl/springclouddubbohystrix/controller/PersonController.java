@@ -29,7 +29,7 @@ public class PersonController {
     }
     @RequestMapping(value = "hi2")
     public String sayHi2(String id) {
-        return personService2.callSayHi(id);
+        return personService2.callSayHi2(id);
     }
     @RequestMapping(value = "hi3")
     public String sayHi3(String id) {

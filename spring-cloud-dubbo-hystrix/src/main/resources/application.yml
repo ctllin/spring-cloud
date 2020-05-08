@@ -19,5 +19,11 @@ spring:
 # Logger Config
 logging:
   level:
-    com.baomidou.mybatisplus.samples: debug
+    com.ctl.springclouddubbohystrix: debug
 # MyBatis-Plus 配置该演示无
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["hystrix.stream"]
