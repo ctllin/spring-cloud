@@ -7,9 +7,8 @@
 #    url: jdbc:p6spy:h2:mem:test
 #    username: root
 #    password: test
+
 spring:
-  profiles:
-    active: dev53
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     schema: classpath:db/schema-h2.sql

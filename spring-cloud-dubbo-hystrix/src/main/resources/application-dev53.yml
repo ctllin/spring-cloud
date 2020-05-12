@@ -1,0 +1,57 @@
+# DataSource Config
+#spring:
+#  datasource:
+#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    schema: classpath:db/schema-h2.sql
+#    data: classpath:db/data-h2.sql
+#    url: jdbc:p6spy:h2:mem:test
+#    username: root
+#    password: test
+
+spring:
+  zipkin:
+    enabled: true
+    base-url: http://192.168.6.27:9000
+    discovery-client-enabled: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    schema: classpath:db/schema-h2.sql
+    data: classpath:db/data-h2.sql
+    url: jdbc:mysql://192.168.2.53:3306/wise_base_acl_new
+    username: root
+    password: hanAshow&123
+# Logger Config
+logging:
+  level:
+    com.ctl.springclouddubbohystrix: debug
+# MyBatis-Plus 配置该演示无
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["hystrix.stream"]
+dubbo:
+  application:
+    id: spring-cloud-dubbo-hystrix
+    name: spring-cloud-dubbo-hystrix
+  protocol:
+    port: 20883
+    threadpool: cached
+    threads: 500
+    accepts: 1000
+    dispatcher: message
+  provider:
+    timeout: 600000
+    filter: 'tracing'
+  registry:
+    address: zookeeper://192.168.2.69:2181
+
+
+zipkin:
+  base-url: http://192.168.6.27:9411  # 指定了Zipkin服务器的地址
+  # 关闭服务发现，否则Spring Cloud会把zipkin的url当做服务名称
+  discoveryClientEnabled: false
+  sender:
+    type: web  # 设置使用http的方式传输数据
+

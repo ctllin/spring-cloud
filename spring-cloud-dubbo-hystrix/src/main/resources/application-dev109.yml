@@ -7,16 +7,15 @@
 #    url: jdbc:p6spy:h2:mem:test
 #    username: root
 #    password: test
+
 spring:
-  profiles:
-    active: dev53
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     schema: classpath:db/schema-h2.sql
     data: classpath:db/data-h2.sql
-    url: jdbc:mysql://192.168.2.69:3306/test
+    url: jdbc:mysql://192.168.2.109:3306/test
     username: root
-    password: NewPassword.2019
+    password: Hanshow123.
 # Logger Config
 logging:
   level:

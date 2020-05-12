@@ -21,8 +21,8 @@ public class TestJDK9 {
     public static void main(String[] args) {
 
 
-        Stream.of("a","b","c","","e","f").takeWhile(s->!s.isEmpty())
-                .forEach(System.out::print);
+//        Stream.of("a","b","c","","e","f").takeWhile(s->!s.isEmpty())
+//                .forEach(System.out::print);
 
         Set<String> set = new HashSet<>();
         set.add("A");
