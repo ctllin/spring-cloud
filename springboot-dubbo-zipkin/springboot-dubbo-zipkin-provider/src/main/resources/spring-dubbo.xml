@@ -21,6 +21,8 @@
     <dubbo:service interface="com.ctl.springbootdubbozipkinapi.service.PersonService" ref="personServiceImpl" />
     <dubbo:service interface="com.ctl.springbootdubbozipkinapi.service.Person2Service" ref="person2ServiceImpl" />
     <dubbo:service interface="com.ctl.springbootdubbozipkinapi.service.Person3Service" ref="person3ServiceImpl" />
+    <dubbo:reference id="person4Service" interface="com.ctl.springbootdubbozipkinapi.service.Person4Service" timeout="${dubbo.reference.timeout}" check="false"/>
+
     <bean id="properties" class="com.ctl.springbootdubbozipkinapi.config.ZipkinProperties">
         <property name="serviceName" value ="${brave.name}"/>
         <property name="url" value ="${http.sender.address}"/>
