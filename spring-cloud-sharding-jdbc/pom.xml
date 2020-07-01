@@ -33,7 +33,7 @@
         <mybatisplus-spring-boot-starter>1.0.5</mybatisplus-spring-boot-starter>
         <sharding-jdbc-core>2.0.3</sharding-jdbc-core>
         <freemarker.version>2.3.28</freemarker.version>
-        <mysql.version>5.1.40</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <druid.version>1.1.6</druid.version>
         <lombok.version>1.16.18</lombok.version>
         <fastjson.version>1.2.44</fastjson.version>
